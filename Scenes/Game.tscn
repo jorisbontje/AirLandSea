@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scripts/Deck.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/UnitCard.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/UnitCardView.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/PlayerHand.tscn" type="PackedScene" id=5]
@@ -63,6 +63,7 @@ alignment = 1
 [node name="TheaterLane1" parent="CenterContainer/HBoxContainer/Board/BoardRow" instance=ExtResource( 6 )]
 margin_left = 35.0
 margin_right = 144.0
+theater_type = 1
 
 [node name="TheaterLane2" parent="CenterContainer/HBoxContainer/Board/BoardRow" instance=ExtResource( 6 )]
 margin_left = 160.0
@@ -84,6 +85,7 @@ rect_min_size = Vector2( 79, 0 )
 margin_top = 145.0
 margin_right = 79.0
 margin_bottom = 254.0
+card_nr = 7
 
 [node name="PlayerHand" parent="CenterContainer/HBoxContainer/Board" instance=ExtResource( 5 )]
 margin_top = 568.0

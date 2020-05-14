@@ -32,7 +32,6 @@ func _new_game():
   deck.shuffle()
 
   theaters.shuffle()
-  print(theater_lanes)
   for lane_nr in range(3):
     theater_lanes[lane_nr].theater_type = theaters[lane_nr]
     theater_lanes[lane_nr].clear()
