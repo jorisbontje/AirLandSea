@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/UnitCard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/PlayerHand.gd" type="Script" id=2]
+
+[node name="PlayerHand" type="VBoxContainer"]
+margin_right = 525.0
+margin_bottom = 137.0
+rect_min_size = Vector2( 0, 100 )
+custom_constants/separation = 4
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 525.0
+margin_bottom = 14.0
+custom_constants/separation = 8
+
+[node name="PlayerLabel" type="Label" parent="HBoxContainer"]
+margin_right = 51.0
+margin_bottom = 14.0
+text = "Player X"
+
+[node name="ScoreLabel" type="Label" parent="HBoxContainer"]
+margin_left = 59.0
+margin_right = 525.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "0 of 12 points"
+align = 2
+
+[node name="CardRow" type="ColorRect" parent="."]
+self_modulate = Color( 0.929412, 0.635294, 0.635294, 1 )
+margin_top = 18.0
+margin_right = 525.0
+margin_bottom = 137.0
+rect_min_size = Vector2( 525, 119 )
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CardRow"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 475.0
+margin_bottom = 110.0
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnitCard" parent="CardRow/HBoxContainer" instance=ExtResource( 1 )]
+margin_right = 79.0
+margin_bottom = 109.0
+card_nr = 1
+
+[node name="UnitCard2" parent="CardRow/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 87.0
+margin_right = 166.0
+margin_bottom = 109.0
+
+[node name="UnitCard3" parent="CardRow/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 174.0
+margin_right = 253.0
+margin_bottom = 109.0
+
+[node name="UnitCard4" parent="CardRow/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 261.0
+margin_right = 340.0
+margin_bottom = 109.0
+
+[node name="UnitCard5" parent="CardRow/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 348.0
+margin_right = 427.0
+margin_bottom = 109.0
+
+[node name="UnitCard6" parent="CardRow/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 435.0
+margin_right = 514.0
+margin_bottom = 109.0

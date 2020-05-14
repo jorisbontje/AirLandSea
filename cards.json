@@ -1,0 +1,104 @@
+[
+  {
+    "type": "air",
+    "strength": 1,
+    "ability": "support",
+    "duration": "ongoing"
+  },
+  {
+    "type": "land",
+    "strength": 1,
+    "ability": "reinforce",
+    "duration": "instant"
+  },
+  {
+    "type": "sea",
+    "strength": 1,
+    "ability": "transport",
+    "duration": "instant"
+  },
+  {
+    "type": "air",
+    "strength": 2,
+    "ability": "air drop",
+    "duration": "instant"
+  },
+  {
+    "type": "land",
+    "strength": 2,
+    "ability": "ambush",
+    "duration": "instant"
+  },
+  {
+    "type": "sea",
+    "strength": 2,
+    "ability": "escalation",
+    "duration": "ongoing"
+  },
+  {
+    "type": "air",
+    "strength": 3,
+    "ability": "maneuver",
+    "duration": "instant"
+  },
+  {
+    "type": "land",
+    "strength": 3,
+    "ability": "maneuver",
+    "duration": "instant"
+  },
+  {
+    "type": "sea",
+    "strength": 3,
+    "ability": "maneuver",
+    "duration": "instant"
+  },
+  {
+    "type": "air",
+    "strength": 4,
+    "ability": "aerodrome",
+    "duration": "ongoing"
+  },
+  {
+    "type": "land",
+    "strength": 4,
+    "ability": "cover fire",
+    "duration": "ongoing"
+  },
+  {
+    "type": "sea",
+    "strength": 4,
+    "ability": "redeploy",
+    "duration": "instant"
+  },
+  {
+    "type": "air",
+    "strength": 5,
+    "ability": "containment",
+    "duration": "ongoing"
+  },
+  {
+    "type": "land",
+    "strength": 5,
+    "ability": "disrupt",
+    "duration": "instant"
+  },
+  {
+    "type": "sea",
+    "strength": 5,
+    "ability": "blockade",
+    "duration": "ongoing"
+  },
+  {
+    "type": "air",
+    "strength": 6
+  },
+  {
+    "type": "land",
+    "strength": 6
+  },
+  {
+    "type": "sea",
+    "strength": 6
+  }
+]

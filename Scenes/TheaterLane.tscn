@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/TheaterCard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/UnitCard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/StackContainer.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/TheaterLane.gd" type="Script" id=4]
+
+[node name="TheaterLane" type="CenterContainer"]
+margin_right = 109.0
+margin_bottom = 399.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+margin_left = -3.0
+margin_top = -19.0
+margin_right = 112.0
+margin_bottom = 417.0
+rect_min_size = Vector2( 115, 436 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.772549, 0.807843, 0.458824, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 109.0
+margin_bottom = 399.0
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 109.0
+margin_bottom = 156.0
+grow_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StackContainer" type="Container" parent="VBoxContainer/CenterContainer"]
+margin_left = 15.0
+margin_right = 94.0
+margin_bottom = 156.0
+rect_min_size = Vector2( 79, 156 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnitCard" parent="VBoxContainer/CenterContainer/StackContainer" instance=ExtResource( 2 )]
+margin_right = 79.0
+margin_bottom = 109.0
+card_nr = 11
+
+[node name="UnitCard2" parent="VBoxContainer/CenterContainer/StackContainer" instance=ExtResource( 2 )]
+margin_top = 24.0
+margin_right = 79.0
+margin_bottom = 133.0
+card_nr = 20
+
+[node name="UnitCard3" parent="VBoxContainer/CenterContainer/StackContainer" instance=ExtResource( 2 )]
+margin_top = 48.0
+margin_right = 79.0
+margin_bottom = 157.0
+card_nr = 4
+
+[node name="UnitCard4" parent="VBoxContainer/CenterContainer/StackContainer" instance=ExtResource( 2 )]
+margin_top = 72.0
+margin_right = 79.0
+margin_bottom = 181.0
+card_nr = 3
+
+[node name="UnitCard5" parent="VBoxContainer/CenterContainer/StackContainer" instance=ExtResource( 2 )]
+margin_top = 96.0
+margin_right = 79.0
+margin_bottom = 205.0
+card_nr = 21
+
+[node name="TheaterCard" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 160.0
+margin_right = 109.0
+margin_bottom = 239.0
+theater_type = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 243.0
+margin_right = 109.0
+margin_bottom = 399.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StackContainer2" type="Container" parent="VBoxContainer/CenterContainer2"]
+margin_left = 15.0
+margin_right = 94.0
+margin_bottom = 156.0
+rect_min_size = Vector2( 79, 156 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnitCard2" parent="VBoxContainer/CenterContainer2/StackContainer2" instance=ExtResource( 2 )]
+margin_right = 79.0
+margin_bottom = 109.0
+card_nr = 20
+
+[node name="UnitCard3" parent="VBoxContainer/CenterContainer2/StackContainer2" instance=ExtResource( 2 )]
+margin_top = 24.0
+margin_right = 79.0
+margin_bottom = 133.0
+
+[node name="UnitCard4" parent="VBoxContainer/CenterContainer2/StackContainer2" instance=ExtResource( 2 )]
+margin_top = 48.0
+margin_right = 79.0
+margin_bottom = 157.0
