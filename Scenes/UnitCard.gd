@@ -5,8 +5,13 @@ export var card_nr = 7 setget set_card_nr
 
 onready var Game = get_node("/root/Game")
 
+var card setget set_card
 var selected = false
 var entered = false
+
+func set_card(new_card):
+  card = new_card
+  set_card_nr(card.sprite_id)
 
 func set_card_nr(new_card_nr):
   if card_nr != new_card_nr:

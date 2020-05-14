@@ -60,7 +60,7 @@ size_flags_vertical = 3
 custom_constants/separation = 16
 alignment = 1
 
-[node name="TheaterLane" parent="CenterContainer/HBoxContainer/Board/BoardRow" instance=ExtResource( 6 )]
+[node name="TheaterLane1" parent="CenterContainer/HBoxContainer/Board/BoardRow" instance=ExtResource( 6 )]
 margin_left = 35.0
 margin_right = 144.0
 

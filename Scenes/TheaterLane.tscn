@@ -36,7 +36,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StackContainer" type="Container" parent="VBoxContainer/CenterContainer"]
+[node name="OpponentStack" type="Container" parent="VBoxContainer/CenterContainer"]
 margin_left = 15.0
 margin_right = 94.0
 margin_bottom = 156.0
@@ -45,31 +45,32 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+stack_height = 24
 
-[node name="UnitCard" parent="VBoxContainer/CenterContainer/StackContainer" instance=ExtResource( 2 )]
+[node name="UnitCard" parent="VBoxContainer/CenterContainer/OpponentStack" instance=ExtResource( 2 )]
 margin_right = 79.0
 margin_bottom = 109.0
 card_nr = 11
 
-[node name="UnitCard2" parent="VBoxContainer/CenterContainer/StackContainer" instance=ExtResource( 2 )]
+[node name="UnitCard2" parent="VBoxContainer/CenterContainer/OpponentStack" instance=ExtResource( 2 )]
 margin_top = 24.0
 margin_right = 79.0
 margin_bottom = 133.0
 card_nr = 20
 
-[node name="UnitCard3" parent="VBoxContainer/CenterContainer/StackContainer" instance=ExtResource( 2 )]
+[node name="UnitCard3" parent="VBoxContainer/CenterContainer/OpponentStack" instance=ExtResource( 2 )]
 margin_top = 48.0
 margin_right = 79.0
 margin_bottom = 157.0
 card_nr = 4
 
-[node name="UnitCard4" parent="VBoxContainer/CenterContainer/StackContainer" instance=ExtResource( 2 )]
+[node name="UnitCard4" parent="VBoxContainer/CenterContainer/OpponentStack" instance=ExtResource( 2 )]
 margin_top = 72.0
 margin_right = 79.0
 margin_bottom = 181.0
 card_nr = 3
 
-[node name="UnitCard5" parent="VBoxContainer/CenterContainer/StackContainer" instance=ExtResource( 2 )]
+[node name="UnitCard5" parent="VBoxContainer/CenterContainer/OpponentStack" instance=ExtResource( 2 )]
 margin_top = 96.0
 margin_right = 79.0
 margin_bottom = 205.0
@@ -89,7 +90,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StackContainer2" type="Container" parent="VBoxContainer/CenterContainer2"]
+[node name="PlayerStack" type="Container" parent="VBoxContainer/CenterContainer2"]
 margin_left = 15.0
 margin_right = 94.0
 margin_bottom = 156.0
@@ -98,18 +99,19 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+stack_height = 24
 
-[node name="UnitCard2" parent="VBoxContainer/CenterContainer2/StackContainer2" instance=ExtResource( 2 )]
+[node name="UnitCard2" parent="VBoxContainer/CenterContainer2/PlayerStack" instance=ExtResource( 2 )]
 margin_right = 79.0
 margin_bottom = 109.0
 card_nr = 20
 
-[node name="UnitCard3" parent="VBoxContainer/CenterContainer2/StackContainer2" instance=ExtResource( 2 )]
+[node name="UnitCard3" parent="VBoxContainer/CenterContainer2/PlayerStack" instance=ExtResource( 2 )]
 margin_top = 24.0
 margin_right = 79.0
 margin_bottom = 133.0
 
-[node name="UnitCard4" parent="VBoxContainer/CenterContainer2/StackContainer2" instance=ExtResource( 2 )]
+[node name="UnitCard4" parent="VBoxContainer/CenterContainer2/PlayerStack" instance=ExtResource( 2 )]
 margin_top = 48.0
 margin_right = 79.0
 margin_bottom = 157.0
