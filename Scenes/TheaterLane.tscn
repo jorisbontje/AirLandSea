@@ -8,6 +8,7 @@
 [node name="TheaterLane" type="CenterContainer"]
 margin_right = 109.0
 margin_bottom = 399.0
+mouse_filter = 1
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -20,6 +21,7 @@ margin_top = -19.0
 margin_right = 112.0
 margin_bottom = 417.0
 rect_min_size = Vector2( 115, 436 )
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.772549, 0.807843, 0.458824, 1 )

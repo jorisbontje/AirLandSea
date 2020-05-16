@@ -3,11 +3,11 @@ extends VBoxContainer
 
 export var player_nr = 0 setget set_player_nr
 export var score = 0 setget set_score
+export var show_hand = true setget set_show_hand
 
 onready var CardRowContainer = find_node("CardRowContainer")
 onready var UnitCard = preload("res://Scenes/UnitCard.tscn")
 
-# do we need these?
 var hand = []
 
 func set_player_nr(new_player_nr):
@@ -28,6 +28,11 @@ func set_score(new_score):
     $HBoxContainer/ScoreLabel.text = str(score) + " of 12 points"
     print("Setting score to ", score)
 
+func set_show_hand(new_show_hand):
+  if show_hand != new_show_hand:
+    show_hand = new_show_hand
+    $CardRow.visible = show_hand
+
 func clear():
   for c in CardRowContainer.get_children():
     c.queue_free()
@@ -36,7 +41,17 @@ func clear():
 func deal_card(card):
 #  print("Dealing card ", card)
   var c = UnitCard.instance()
+  card.faceup = true
   c.card = card
+  card.obj = c
   CardRowContainer.add_child(c)
-  hand.append(c)
+  hand.append(card)
 
+func take_card(card):
+  print("HAND: ", hand)
+  var idx = hand.find(card)
+  if idx != -1:
+    hand[idx].obj.queue_free()
+    hand.remove(idx)
+    return true
+  return false

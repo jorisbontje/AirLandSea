@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/UnitCard.tscn" type="PackedScene" id=3]
@@ -10,6 +10,24 @@
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.423529, 0.423529, 0.423529, 1 )
+
+[sub_resource type="InputEventKey" id=3]
+scancode = 87
+
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
+
+[sub_resource type="InputEventKey" id=5]
+scancode = 85
+
+[sub_resource type="ShortCut" id=6]
+shortcut = SubResource( 5 )
+
+[sub_resource type="InputEventKey" id=7]
+scancode = 68
+
+[sub_resource type="ShortCut" id=8]
+shortcut = SubResource( 7 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -42,7 +60,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextLog" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
+[node name="DebugSidebar" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
 margin_right = 240.0
 margin_bottom = 589.0
 rect_min_size = Vector2( 240, 60 )
@@ -50,14 +68,14 @@ rect_pivot_offset = Vector2( -571.828, -65 )
 theme = SubResource( 1 )
 custom_constants/separation = 32
 
-[node name="NewGameButton" type="Button" parent="CenterContainer/HBoxContainer/TextLog"]
+[node name="NewGameButton" type="Button" parent="CenterContainer/HBoxContainer/DebugSidebar"]
 margin_right = 240.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 120, 40 )
 size_flags_vertical = 0
 text = "New Game"
 
-[node name="Label" type="RichTextLabel" parent="CenterContainer/HBoxContainer/TextLog"]
+[node name="LogLabel" type="RichTextLabel" parent="CenterContainer/HBoxContainer/DebugSidebar"]
 margin_top = 72.0
 margin_right = 240.0
 margin_bottom = 589.0
@@ -65,11 +83,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/normal = SubResource( 2 )
 text = "Log:
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5"
+"
+scroll_following = true
 
 [node name="Board" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
 self_modulate = Color( 0.768627, 0.698039, 0.698039, 1 )
@@ -82,11 +97,13 @@ __meta__ = {
 }
 
 [node name="OpponentHand" parent="CenterContainer/HBoxContainer/Board" instance=ExtResource( 5 )]
-visible = false
+margin_bottom = 14.0
+rect_min_size = Vector2( 0, 0 )
 player_nr = 2
-score = 0
+show_hand = false
 
 [node name="BoardRow" type="HBoxContainer" parent="CenterContainer/HBoxContainer/Board"]
+margin_top = 30.0
 margin_right = 525.0
 margin_bottom = 436.0
 grow_horizontal = 0
@@ -99,37 +116,36 @@ alignment = 1
 [node name="TheaterLane1" parent="CenterContainer/HBoxContainer/Board/BoardRow" instance=ExtResource( 6 )]
 margin_left = 35.0
 margin_right = 144.0
-margin_bottom = 436.0
-theater_type = 1
+margin_bottom = 406.0
 
 [node name="TheaterLane2" parent="CenterContainer/HBoxContainer/Board/BoardRow" instance=ExtResource( 6 )]
 margin_left = 160.0
 margin_right = 269.0
-margin_bottom = 436.0
+margin_bottom = 406.0
 theater_type = 2
 
 [node name="TheaterLane3" parent="CenterContainer/HBoxContainer/Board/BoardRow" instance=ExtResource( 6 )]
 margin_left = 285.0
 margin_right = 394.0
-margin_bottom = 436.0
+margin_bottom = 406.0
 theater_type = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/HBoxContainer/Board/BoardRow"]
 margin_left = 410.0
 margin_right = 489.0
-margin_bottom = 436.0
+margin_bottom = 406.0
 rect_min_size = Vector2( 79, 0 )
 
 [node name="UnitCard" parent="CenterContainer/HBoxContainer/Board/BoardRow/CenterContainer" instance=ExtResource( 3 )]
-margin_top = 163.0
+margin_top = 148.0
 margin_right = 79.0
-margin_bottom = 272.0
+margin_bottom = 257.0
 
 [node name="PlayerHand" parent="CenterContainer/HBoxContainer/Board" instance=ExtResource( 5 )]
 margin_top = 452.0
 margin_bottom = 589.0
+rect_min_size = Vector2( 0, 0 )
 player_nr = 1
-score = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/HBoxContainer"]
 margin_left = 893.0
@@ -146,6 +162,7 @@ margin_right = 233.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 120, 40 )
 size_flags_vertical = 0
+shortcut = SubResource( 4 )
 text = "Withdraw"
 
 [node name="Spacer" type="Control" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
@@ -165,7 +182,7 @@ margin_right = 233.0
 margin_bottom = 423.0
 rect_min_size = Vector2( 0, 8 )
 
-[node name="Prompt" type="Label" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
+[node name="ActionPrompt" type="Label" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
 margin_top = 439.0
 margin_right = 233.0
 margin_bottom = 453.0
@@ -187,6 +204,7 @@ margin_bottom = 533.0
 rect_min_size = Vector2( 120, 40 )
 size_flags_vertical = 0
 disabled = true
+shortcut = SubResource( 6 )
 text = "Play Faceup"
 
 [node name="PlayFacedownButton" type="Button" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
@@ -196,11 +214,12 @@ margin_bottom = 589.0
 rect_min_size = Vector2( 120, 40 )
 size_flags_vertical = 0
 disabled = true
+shortcut = SubResource( 8 )
 text = "Play Facedown"
 [connection signal="card_focussed" from="." to="CenterContainer/HBoxContainer/CenterContainer/SideBar/UnitCardView" method="_on_Game_card_focussed"]
 [connection signal="card_selected" from="." to="CenterContainer/HBoxContainer/CenterContainer/SideBar/UnitCardView" method="_on_Game_card_selected"]
 [connection signal="gui_input" from="CenterContainer" to="." method="_on_CenterContainer_gui_input"]
-[connection signal="pressed" from="CenterContainer/HBoxContainer/TextLog/NewGameButton" to="." method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/DebugSidebar/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/CenterContainer/SideBar/WithdrawButton" to="." method="_on_WithdrawButton_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/CenterContainer/SideBar/PlayFaceupButton" to="." method="_on_PlayFaceupButton_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/CenterContainer/SideBar/PlayFacedownButton" to="." method="_on_PlayFacedownButton_pressed"]

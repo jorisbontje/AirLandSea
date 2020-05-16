@@ -5,13 +5,18 @@ export var theater_type = 0 setget set_theater_type
 
 onready var Game = get_node("/root/Game")
 
-var selected = false
+var selected = false setget set_selected
 var entered = false
 
 func set_theater_type(new_theater_type):
   if theater_type != new_theater_type:
     theater_type = new_theater_type
     $"theater-cards".frame = new_theater_type
+
+func set_selected(new_selected):
+  if selected != new_selected:
+    selected = new_selected
+    _update_border()
 
 func _update_border():
   if selected:
@@ -23,8 +28,7 @@ func _update_border():
 
 func _on_TheaterCard_pressed():
   print("theater card clicked")
-  selected = not selected
-  _update_border()
+  set_selected(not selected)
 
   if Game:
     if selected:
