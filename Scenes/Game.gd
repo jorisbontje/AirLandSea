@@ -9,6 +9,7 @@ var theaters = [TH_AIR, TH_LAND, TH_SEA]
 var deck: Array
 var default_deck: Array
 var theater_lanes = []
+var selected_theater
 
 onready var OpponentHand = find_node("OpponentHand")
 onready var PlayerHand = find_node("PlayerHand")
@@ -22,7 +23,11 @@ onready var PlayFacedownButton = find_node("PlayFacedownButton")
 
 func _load_cards() -> Array:
   var file := File.new()
-  file.open("res://cards.json", file.READ)
+  var err = file.open("res://cards.json", file.READ)
+  if err:
+    push_error("Can't open cards.json")
+    return []
+
   var text = file.get_as_text()
   file.close()
   return parse_json(text)
@@ -39,7 +44,7 @@ func _new_game():
   OpponentHand.clear()
   PlayerHand.clear()
 
-  for i in range(6):
+  for _i in range(6):
     OpponentHand.deal_card(deck.pop_back())
     PlayerHand.deal_card(deck.pop_back())
 
@@ -65,7 +70,7 @@ func card_selected(card_nr):
     PlayFacedownButton.disabled = false
 
 func theater_selected(theater_type):
-  pass
+  selected_theater = theater_type
 
 func _on_NewGameButton_pressed():
   print("NEW GAME")
@@ -80,7 +85,7 @@ func _on_PlayFacedownButton_pressed():
 func _on_WithdrawButton_pressed():
   print("WITHDRAW")
 
-func _input(event):
+func _input(_event):
   if Input.is_action_pressed("ui_cancel"):
     get_tree().quit()
 
