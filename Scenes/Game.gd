@@ -3,6 +3,8 @@ extends Node
 signal card_focussed
 signal card_selected
 
+
+const VERSION = "AirLandSea 0.1.0"
 const DEAL_COUNT = 6
 const WIN_SCORE = 12
 
@@ -25,6 +27,7 @@ var selected_card = null
 var selected_theater = THEATERS.NONE
 
 onready var LogLabel = find_node("LogLabel")
+onready var VersionLabel = find_node("VersionLabel")
 onready var ActionPrompt = find_node("ActionPrompt")
 
 onready var OpponentHand = find_node("OpponentHand")
@@ -117,6 +120,7 @@ func log_text(line):
   LogLabel.newline()
 
 func _ready():
+  VersionLabel.text = VERSION
   randomize()
 
   player_hands = [OpponentHand, PlayerHand]
