@@ -37,6 +37,7 @@ onready var TheaterLane1 = find_node("TheaterLane1")
 onready var TheaterLane2 = find_node("TheaterLane2")
 onready var TheaterLane3 = find_node("TheaterLane3")
 
+onready var UnitCardView = find_node("UnitCardView")
 onready var PlayFaceupButton = find_node("PlayFaceupButton")
 onready var PlayFacedownButton = find_node("PlayFacedownButton")
 
@@ -72,6 +73,7 @@ func _new_round():
     theater_lanes[lane_nr].theater_type = theaters[lane_nr]
     theater_lanes[lane_nr].clear()
 
+  UnitCardView.deselect()
   OpponentHand.clear()
   PlayerHand.clear()
 
@@ -127,6 +129,11 @@ func _ready():
   theater_lanes = [TheaterLane1, TheaterLane2, TheaterLane3]
   default_deck = _load_cards()
   _new_game()
+
+func _select_theater_lane(theater_type):
+  for theater_lane in theater_lanes:
+    if theater_lane.theater_type == theater_type:
+      theater_lane.select()
 
 func card_nr_focussed(card_nr):
   emit_signal("card_focussed", card_nr)
@@ -253,6 +260,24 @@ func _on_WithdrawButton_pressed():
 func _input(_event):
   if Input.is_action_pressed("ui_cancel"):
     get_tree().quit()
+  elif Input.is_action_pressed("ui_select_1"):
+    player_hands[current_side].select_card(1)
+  elif Input.is_action_pressed("ui_select_2"):
+    player_hands[current_side].select_card(2)
+  elif Input.is_action_pressed("ui_select_3"):
+    player_hands[current_side].select_card(3)
+  elif Input.is_action_pressed("ui_select_4"):
+    player_hands[current_side].select_card(4)
+  elif Input.is_action_pressed("ui_select_5"):
+    player_hands[current_side].select_card(5)
+  elif Input.is_action_pressed("ui_select_6"):
+    player_hands[current_side].select_card(6)
+  elif Input.is_action_pressed("ui_select_air"):
+    _select_theater_lane(THEATERS.AIR)
+  elif Input.is_action_pressed("ui_select_land"):
+    _select_theater_lane(THEATERS.LAND)
+  elif Input.is_action_pressed("ui_select_sea"):
+    _select_theater_lane(THEATERS.SEA)
 
 func _on_CenterContainer_gui_input(event):
   if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:

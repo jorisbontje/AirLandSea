@@ -26,6 +26,9 @@ func clear():
   for c in PlayerStack.get_children():
     c.queue_free()
 
+func select():
+  TheaterCard._on_TheaterCard_pressed()
+
 func deselect():
   TheaterCard.selected = false
 

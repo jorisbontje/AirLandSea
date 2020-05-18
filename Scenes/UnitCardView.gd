@@ -16,6 +16,11 @@ func _update_view():
     $NoCardSelected.visible = true
     $"unit-cards".visible = false
 
+func deselect():
+  focussed_card_nr = null
+  selected_card = null
+  _update_view()
+
 func _on_Game_card_focussed(card_nr):
   focussed_card_nr = card_nr
   _update_view()
