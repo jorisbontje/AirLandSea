@@ -1,7 +1,8 @@
 tool
 extends VBoxContainer
 
-export var player_nr = 0 setget set_player_nr
+export var player_name = "Player" setget set_player_name
+export var is_first = true setget set_is_first
 export var score = 0 setget set_score
 export var show_hand = true setget set_show_hand
 
@@ -10,16 +11,13 @@ onready var UnitCard = preload("res://Scenes/UnitCard.tscn")
 
 var hand = []
 
-func set_player_nr(new_player_nr):
-  player_nr = new_player_nr
-  $HBoxContainer/PlayerLabel.text = "Player " + str(player_nr)
-  print("Setting player_nr to ", player_nr)
-#  if player_nr == 1:
-#    $CardRow.color = Color.aliceblue
-#  elif player_nr == 2:
-#    $CardRow.color = Color.aqua
-#  else:
-#    $CardRow.color = Color.black
+func set_player_name(new_player_name):
+  player_name = new_player_name
+  $HBoxContainer/PlayerLabel.text = player_name
+
+func set_is_first(new_is_first):
+  is_first = new_is_first
+  $HBoxContainer/FirstLabel.visible = is_first
 
 func set_score(new_score):
   if score != new_score:

@@ -52,9 +52,9 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
 margin_left = 77.0
-margin_top = 7.0
+margin_top = 69.0
 margin_right = 1203.0
-margin_bottom = 712.0
+margin_bottom = 651.0
 custom_constants/separation = 64
 __meta__ = {
 "_edit_use_anchors_": false
@@ -62,7 +62,7 @@ __meta__ = {
 
 [node name="DebugSidebar" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
 margin_right = 240.0
-margin_bottom = 705.0
+margin_bottom = 582.0
 rect_min_size = Vector2( 240, 60 )
 rect_pivot_offset = Vector2( -571.828, -65 )
 theme = SubResource( 1 )
@@ -78,7 +78,7 @@ text = "New Game"
 [node name="LogLabel" type="RichTextLabel" parent="CenterContainer/HBoxContainer/DebugSidebar"]
 margin_top = 56.0
 margin_right = 240.0
-margin_bottom = 675.0
+margin_bottom = 552.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/normal = SubResource( 2 )
@@ -87,30 +87,32 @@ text = "Log:
 scroll_following = true
 
 [node name="VersionLabel" type="Label" parent="CenterContainer/HBoxContainer/DebugSidebar"]
-margin_top = 691.0
+margin_top = 568.0
 margin_right = 240.0
-margin_bottom = 705.0
+margin_bottom = 582.0
 text = "AirLandSea v0.0.0"
 
 [node name="Board" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
 self_modulate = Color( 0.768627, 0.698039, 0.698039, 1 )
 margin_left = 304.0
 margin_right = 829.0
-margin_bottom = 705.0
+margin_bottom = 582.0
 custom_constants/separation = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="OpponentHand" parent="CenterContainer/HBoxContainer/Board" instance=ExtResource( 5 )]
+margin_bottom = 14.0
 rect_min_size = Vector2( 0, 0 )
-player_nr = 2
+player_name = "Easy AI"
+is_first = false
 show_hand = false
 
 [node name="BoardRow" type="HBoxContainer" parent="CenterContainer/HBoxContainer/Board"]
-margin_top = 153.0
+margin_top = 30.0
 margin_right = 525.0
-margin_bottom = 552.0
+margin_bottom = 429.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
@@ -144,20 +146,19 @@ margin_right = 79.0
 margin_bottom = 254.0
 
 [node name="PlayerHand" parent="CenterContainer/HBoxContainer/Board" instance=ExtResource( 5 )]
-margin_top = 568.0
-margin_bottom = 705.0
+margin_top = 445.0
+margin_bottom = 582.0
 rect_min_size = Vector2( 0, 0 )
-player_nr = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/HBoxContainer"]
 margin_left = 893.0
 margin_right = 1126.0
-margin_bottom = 705.0
+margin_bottom = 582.0
 
 [node name="SideBar" type="VBoxContainer" parent="CenterContainer/HBoxContainer/CenterContainer"]
-margin_top = 68.0
+margin_top = 6.0
 margin_right = 233.0
-margin_bottom = 637.0
+margin_bottom = 575.0
 custom_constants/separation = 16
 
 [node name="WithdrawButton" type="Button" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]

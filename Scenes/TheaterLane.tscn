@@ -47,7 +47,6 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-stack_height = 24
 
 [node name="UnitCard" parent="VBoxContainer/CenterContainer/OpponentStack" instance=ExtResource( 2 )]
 margin_right = 79.0
@@ -101,7 +100,6 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-stack_height = 24
 
 [node name="UnitCard2" parent="VBoxContainer/CenterContainer2/PlayerStack" instance=ExtResource( 2 )]
 margin_right = 79.0

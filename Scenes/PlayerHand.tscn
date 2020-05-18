@@ -19,19 +19,25 @@ margin_bottom = 14.0
 custom_constants/separation = 8
 
 [node name="PlayerLabel" type="Label" parent="HBoxContainer"]
-margin_right = 51.0
+margin_right = 39.0
 margin_bottom = 14.0
-text = "Player 0"
+text = "Player"
+
+[node name="FirstLabel" type="Label" parent="HBoxContainer"]
+margin_left = 47.0
+margin_right = 80.0
+margin_bottom = 14.0
+text = "(first)"
 
 [node name="ScoreLabel" type="Label" parent="HBoxContainer"]
-margin_left = 59.0
+margin_left = 88.0
 margin_right = 525.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "0 of 12 points"
 align = 2
 
-[node name="CardRow" type="Container" parent="."]
+[node name="CardRow" type="Control" parent="."]
 self_modulate = Color( 0.929412, 0.635294, 0.635294, 1 )
 margin_top = 18.0
 margin_right = 525.0

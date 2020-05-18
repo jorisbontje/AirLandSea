@@ -77,8 +77,9 @@ func _new_round():
   OpponentHand.clear()
   PlayerHand.clear()
 
-  OpponentHand.player_nr = players[SIDES.OPPONENT]
-  PlayerHand.player_nr = players[SIDES.PLAYER]
+  OpponentHand.is_first = players[SIDES.OPPONENT] == PLAYERS.P1
+  PlayerHand.is_first = players[SIDES.PLAYER] == PLAYERS.P1
+
   current_player = PLAYERS.P1
   if current_player == players[SIDES.PLAYER]:
     current_side = SIDES.PLAYER
