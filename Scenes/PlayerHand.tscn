@@ -31,14 +31,13 @@ size_flags_horizontal = 3
 text = "0 of 12 points"
 align = 2
 
-[node name="CardRow" type="ColorRect" parent="."]
+[node name="CardRow" type="Container" parent="."]
 self_modulate = Color( 0.929412, 0.635294, 0.635294, 1 )
 margin_top = 18.0
 margin_right = 525.0
 margin_bottom = 137.0
 rect_min_size = Vector2( 525, 119 )
 size_flags_horizontal = 3
-color = Color( 0, 0, 0, 1 )
 
 [node name="CardRowContainer" type="HBoxContainer" parent="CardRow"]
 margin_left = 5.0
