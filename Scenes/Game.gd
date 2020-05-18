@@ -4,7 +4,7 @@ signal card_focussed
 signal card_selected
 
 
-const VERSION = "AirLandSea 0.1.0"
+const VERSION = "AirLandSea 0.1.2"
 const DEAL_COUNT = 6
 const WIN_SCORE = 12
 
