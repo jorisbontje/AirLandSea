@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+is_selectable = false
 
 [node name="Border" type="ColorRect" parent="."]
 margin_right = 79.0

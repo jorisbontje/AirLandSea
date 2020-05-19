@@ -45,6 +45,7 @@ func deal_card(card):
 #  print("Dealing card ", card)
   var c = UnitCard.instance()
   card.faceup = true
+  c.is_selectable = true
   c.card = card
   card.obj = c
   CardRowContainer.add_child(c)

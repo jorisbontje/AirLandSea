@@ -131,16 +131,22 @@ func _ready():
   default_deck = _load_cards()
   _new_game()
 
-func _select_theater_lane(theater_type):
+func _select_theater_lane(theater_type, select=true):
   for theater_lane in theater_lanes:
     if theater_lane.theater_type == theater_type:
-      theater_lane.select()
+      if select:
+        theater_lane.select()
+      else:
+        theater_lane.deselect()
 
 func card_nr_focussed(card_nr):
   emit_signal("card_focussed", card_nr)
 
 func card_selected(card):
   emit_signal("card_selected", card)
+  if selected_card:
+    selected_card.obj.deselect()
+
   selected_card = card
 
   if card == null:
@@ -153,7 +159,11 @@ func card_selected(card):
     PlayFacedownButton.disabled = false
 
 func theater_selected(theater_type):
+  if selected_theater:
+    _select_theater_lane(selected_theater, false)
+
   selected_theater = theater_type
+
   if theater_type:
     if selected_action:
       play_card(selected_action, selected_card, selected_theater)
