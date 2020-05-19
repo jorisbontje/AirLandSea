@@ -13,6 +13,7 @@ enum PLAYERS {P1 = 1, P2}
 enum SIDES {OPPONENT, PLAYER}
 enum ACTIONS {NONE, PLAY_FACEUP, PLAY_FACEDOWN}
 
+var theater_ids = {'air': THEATERS.AIR, 'land': THEATERS.LAND, 'sea': THEATERS.SEA}
 var theaters = [THEATERS.AIR, THEATERS.LAND, THEATERS.SEA]
 var deck: Array
 var default_deck: Array
@@ -172,9 +173,13 @@ func theater_selected(theater_type):
     else:
       ActionPrompt.text = "Select a card from your hand to play."
 
-func is_action_playable(action, card, theater):
-  # TODO
-  return true
+func is_action_playable(action, card, theater_id):
+  print(card, theater_id)
+  if action == ACTIONS.PLAY_FACEDOWN:
+    return true
+  elif action == ACTIONS.PLAY_FACEUP and theater_ids[card.type] == theater_id:
+    return true
+  return false
 
 func play_card(action, card, theater):
 #  print("PLAY: ", ACTIONS.keys()[action], " ", card, " ", THEATERS.keys()[theater])
