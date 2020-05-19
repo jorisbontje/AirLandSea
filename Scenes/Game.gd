@@ -4,8 +4,8 @@ signal card_focussed
 signal card_selected
 
 
-const VERSION = "AirLandSea 0.1.2"
-const DEAL_COUNT = 6
+const VERSION = "AirLandSea 0.1.6"
+const DEAL_COUNT = 2 # XXXX
 const WIN_SCORE = 12
 
 enum THEATERS {NONE, AIR = 1, LAND, SEA}
@@ -101,6 +101,36 @@ func _other_side(side):
 func _other_player(player):
   return 3 - player
 
+func game_over():
+  var opponent_wins = 0
+  var player_wins = 0
+  for theater_lane in theater_lanes:
+    if theater_lane.opponent_strength > theater_lane.player_strength:
+      opponent_wins += 1
+    elif theater_lane.player_strength > theater_lane.opponent_strength:
+      player_wins += 1
+    else:
+      if OpponentHand.is_first:
+        opponent_wins += 1
+      else:
+        player_wins += 1
+
+  if opponent_wins >= 2:
+    log_text("Opponent controls at least 2 theaters and scores " + str(6) + " points.")
+    # TODO refactor
+    scores[SIDES.OPPONENT] += 6
+    OpponentHand.score = scores[SIDES.OPPONENT]
+  elif player_wins >= 2:
+    log_text("Player controls at least 2 theaters and scores " + str(6) + " points.")
+    # TODO refactor
+    scores[SIDES.PLAYER] += 6
+    PlayerHand.score = scores[SIDES.PLAYER]
+  else:
+    push_error("No winner")
+    return
+
+  should_play_next_battle()
+
 func _next_turn():
 #  ActionPrompt.text = "Select a card from your hand to play."
   current_player = _other_player(current_player)
@@ -117,6 +147,15 @@ func _next_turn():
 
   for theater_lane in theater_lanes:
     theater_lane.deselect()
+
+  # TODO detect game over
+  var cards_left = player_hands[current_side].hand.size()
+  if cards_left == 0:
+    log_text("GAME OVER... counting scores")
+    game_over()
+    return
+  else:
+    log_text("Cards left: " + str(cards_left))
 
 func log_text(line):
   print(line)
@@ -174,7 +213,6 @@ func theater_selected(theater_type):
       ActionPrompt.text = "Select a card from your hand to play."
 
 func is_action_playable(action, card, theater_id):
-  print(card, theater_id)
   if action == ACTIONS.PLAY_FACEDOWN:
     return true
   elif action == ACTIONS.PLAY_FACEUP and theater_ids[card.type] == theater_id:
@@ -235,19 +273,26 @@ func show_winner():
   else:
     log_text("Opponent wins!")
 
+func should_play_next_battle():
+  if scores[SIDES.OPPONENT] >= WIN_SCORE or scores[SIDES.PLAYER] >= WIN_SCORE:
+    show_winner()
+  else:
+    _next_battle()
+    _new_round()
+
 func play_withdraw():
   var cards_left = player_hands[current_side].hand.size()
   print("CARDS LEFT ", cards_left)
 
   var score = calc_withdraw_score(current_player, cards_left)
   log_text("Player " + str(_other_player(current_player)) + " scores " + str(score) + " from withdraw.")
+
+  # TODO refactor
   scores[_other_side(current_side)] += score
   player_hands[_other_side(current_side)].score = scores[_other_side(current_side)]
-  if scores[_other_side(current_side)] >= WIN_SCORE:
-    show_winner()
-  else:
-    _next_battle()
-    _new_round()
+
+  should_play_next_battle()
+
 
 
 func _on_NewGameButton_pressed():
