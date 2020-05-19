@@ -13,6 +13,8 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+opponent_strength = 0
+player_strength = 0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -82,6 +84,34 @@ margin_top = 160.0
 margin_right = 109.0
 margin_bottom = 239.0
 theater_type = 1
+
+[node name="OpponentStrength" type="Label" parent="VBoxContainer/TheaterCard"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 14.0
+text = "0"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerStrength" type="Label" parent="VBoxContainer/TheaterCard"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -35.0
+margin_top = -17.5931
+margin_right = -5.0
+margin_bottom = -3.59309
+text = "0	"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
 margin_top = 243.0
