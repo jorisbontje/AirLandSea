@@ -1,10 +1,6 @@
 tool
 extends Container
 
-# TODO globals?
-const FACEDOWN_STRENGTH = 2
-enum SIDES {OPPONENT, PLAYER}
-
 export var theater_type = 1 setget set_theater_type
 export var opponent_strength = 1 setget set_opponent_strength
 export var player_strength = 1 setget set_player_strength
@@ -56,10 +52,10 @@ func play_card(side, card):
   c.card = card
   var strength = card.strength
   if not card.faceup:
-    strength = FACEDOWN_STRENGTH
-  if side == SIDES.OPPONENT:
+    strength = Globals.FACEDOWN_STRENGTH
+  if side == Globals.SIDES.OPPONENT:
     OpponentStack.add_child(c)
     set_opponent_strength(opponent_strength + strength)
-  elif side == SIDES.PLAYER:
+  elif side == Globals.SIDES.PLAYER:
     PlayerStack.add_child(c)
     set_player_strength(player_strength + strength)
