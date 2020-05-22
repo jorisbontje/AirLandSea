@@ -104,6 +104,10 @@ func _other_side(side):
 func _other_player(player):
   return 3 - player
 
+func _score_points(side, score):
+  scores[side] += score
+  player_hands[side].score = scores[side]
+
 func game_over():
   var opponent_wins = 0
   var player_wins = 0
@@ -120,14 +124,10 @@ func game_over():
 
   if opponent_wins >= 2:
     log_text("Opponent controls at least 2 theaters and scores " + str(Globals.BATTLE_SCORE) + " points.")
-    # TODO refactor
-    scores[Globals.SIDES.OPPONENT] += Globals.BATTLE_SCORE
-    OpponentHand.score = scores[Globals.SIDES.OPPONENT]
+    _score_points(Globals.SIDES.OPPONENT, Globals.BATTLE_SCORE)
   elif player_wins >= 2:
     log_text("Player controls at least 2 theaters and scores " + str(Globals.BATTLE_SCORE) + " points.")
-    # TODO refactor
-    scores[Globals.SIDES.PLAYER] += Globals.BATTLE_SCORE
-    PlayerHand.score = scores[Globals.SIDES.PLAYER]
+    _score_points(Globals.SIDES.PLAYER, Globals.BATTLE_SCORE)
   else:
     push_error("No winner")
     return
@@ -237,7 +237,6 @@ func play_card(action, card, theater):
   else:
     log_text("Player " + str(current_player) + " plays face down on " + Globals.THEATERS.keys()[theater])
 
-
   card.faceup = (action == Globals.ACTIONS.PLAY_FACEUP)
 
   # add card to board
@@ -245,10 +244,8 @@ func play_card(action, card, theater):
     if theater == theater_lane.theater_type:
       theater_lane.play_card(current_side, card)
 
-  # if played faceup perform tactical abilities
-  # TODO
+  # TODO if played faceup perform tactical abilities
 
-  # next turn
   _next_turn()
 
 func calc_withdraw_score(player, cards_left):
@@ -302,17 +299,13 @@ func play_withdraw():
   var score = calc_withdraw_score(current_player, cards_left)
   log_text("Player " + str(_other_player(current_player)) + " scores " + str(score) + " from withdraw.")
 
-  # TODO refactor
-  scores[_other_side(current_side)] += score
-  player_hands[_other_side(current_side)].score = scores[_other_side(current_side)]
+  _score_points(_other_side(current_side), score)
   _deselect_all()
   should_play_next_battle()
 
 
 func _on_NewGameButton_pressed():
-  # TODO new battle or new game
   if game_state == Globals.STATES.END_BATTLE:
-    # TODO don't automatically continue before showing results
     _next_battle()
     _new_round()
   else:
