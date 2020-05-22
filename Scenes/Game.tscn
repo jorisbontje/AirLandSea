@@ -51,10 +51,10 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
-margin_left = 77.0
-margin_top = 69.0
-margin_right = 1203.0
-margin_bottom = 651.0
+margin_left = 79.0
+margin_top = 67.0
+margin_right = 1201.0
+margin_bottom = 653.0
 custom_constants/separation = 64
 __meta__ = {
 "_edit_use_anchors_": false
@@ -62,7 +62,7 @@ __meta__ = {
 
 [node name="DebugSidebar" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
 margin_right = 240.0
-margin_bottom = 582.0
+margin_bottom = 586.0
 rect_min_size = Vector2( 240, 60 )
 rect_pivot_offset = Vector2( -571.828, -65 )
 theme = SubResource( 1 )
@@ -78,7 +78,7 @@ text = "New Game"
 [node name="LogLabel" type="RichTextLabel" parent="CenterContainer/HBoxContainer/DebugSidebar"]
 margin_top = 56.0
 margin_right = 240.0
-margin_bottom = 552.0
+margin_bottom = 556.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/normal = SubResource( 2 )
@@ -87,16 +87,16 @@ text = "Log:
 scroll_following = true
 
 [node name="VersionLabel" type="Label" parent="CenterContainer/HBoxContainer/DebugSidebar"]
-margin_top = 568.0
+margin_top = 572.0
 margin_right = 240.0
-margin_bottom = 582.0
+margin_bottom = 586.0
 text = "AirLandSea v0.0.0"
 
 [node name="Board" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
 self_modulate = Color( 0.768627, 0.698039, 0.698039, 1 )
 margin_left = 304.0
 margin_right = 829.0
-margin_bottom = 582.0
+margin_bottom = 586.0
 custom_constants/separation = 16
 __meta__ = {
 "_edit_use_anchors_": false
@@ -112,7 +112,7 @@ show_hand = false
 [node name="BoardRow" type="HBoxContainer" parent="CenterContainer/HBoxContainer/Board"]
 margin_top = 30.0
 margin_right = 525.0
-margin_bottom = 429.0
+margin_bottom = 433.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
@@ -123,46 +123,48 @@ alignment = 1
 [node name="TheaterLane1" parent="CenterContainer/HBoxContainer/Board/BoardRow" instance=ExtResource( 6 )]
 margin_left = 35.0
 margin_right = 144.0
+margin_bottom = 403.0
 
 [node name="TheaterLane2" parent="CenterContainer/HBoxContainer/Board/BoardRow" instance=ExtResource( 6 )]
 margin_left = 160.0
 margin_right = 269.0
+margin_bottom = 403.0
 theater_type = 2
 
 [node name="TheaterLane3" parent="CenterContainer/HBoxContainer/Board/BoardRow" instance=ExtResource( 6 )]
 margin_left = 285.0
 margin_right = 394.0
+margin_bottom = 403.0
 theater_type = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/HBoxContainer/Board/BoardRow"]
 margin_left = 410.0
 margin_right = 489.0
-margin_bottom = 399.0
+margin_bottom = 403.0
 rect_min_size = Vector2( 79, 0 )
 
 [node name="UnitCard" parent="CenterContainer/HBoxContainer/Board/BoardRow/CenterContainer" instance=ExtResource( 3 )]
-margin_top = 145.0
+margin_top = 147.0
 margin_right = 79.0
-margin_bottom = 254.0
+margin_bottom = 256.0
 
 [node name="PlayerHand" parent="CenterContainer/HBoxContainer/Board" instance=ExtResource( 5 )]
-margin_top = 445.0
-margin_bottom = 582.0
+margin_top = 449.0
+margin_bottom = 586.0
 rect_min_size = Vector2( 0, 0 )
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/HBoxContainer"]
 margin_left = 893.0
-margin_right = 1126.0
-margin_bottom = 582.0
+margin_right = 1122.0
+margin_bottom = 586.0
 
 [node name="SideBar" type="VBoxContainer" parent="CenterContainer/HBoxContainer/CenterContainer"]
-margin_top = 6.0
-margin_right = 233.0
-margin_bottom = 575.0
+margin_right = 229.0
+margin_bottom = 586.0
 custom_constants/separation = 16
 
 [node name="WithdrawButton" type="Button" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
-margin_right = 233.0
+margin_right = 229.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 120, 60 )
 size_flags_vertical = 0
@@ -171,38 +173,40 @@ text = "Withdraw"
 
 [node name="UnitCardView" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar" instance=ExtResource( 4 )]
 margin_top = 76.0
-margin_right = 233.0
+margin_right = 229.0
 margin_bottom = 395.0
 
 [node name="Spacer2" type="Control" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
 margin_top = 411.0
-margin_right = 233.0
+margin_right = 229.0
 margin_bottom = 419.0
 rect_min_size = Vector2( 0, 8 )
 
 [node name="ActionPrompt" type="Label" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
 margin_top = 435.0
-margin_right = 233.0
-margin_bottom = 449.0
+margin_right = 229.0
+margin_bottom = 466.0
+rect_min_size = Vector2( 229, 31 )
 text = "Select a card from your hand to play."
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Spacer3" type="Control" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
-margin_top = 465.0
-margin_right = 233.0
-margin_bottom = 473.0
+margin_top = 482.0
+margin_right = 229.0
+margin_bottom = 490.0
 rect_min_size = Vector2( 0, 8 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
-margin_top = 489.0
-margin_right = 233.0
-margin_bottom = 569.0
+margin_top = 506.0
+margin_right = 229.0
+margin_bottom = 586.0
 custom_constants/separation = 16
 
 [node name="PlayFaceupButton" type="Button" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar/HBoxContainer"]
-margin_right = 108.0
+margin_right = 106.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 0, 80 )
 size_flags_horizontal = 3
@@ -212,8 +216,8 @@ shortcut = SubResource( 6 )
 text = "Play Faceup"
 
 [node name="PlayFacedownButton" type="Button" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar/HBoxContainer"]
-margin_left = 124.0
-margin_right = 233.0
+margin_left = 122.0
+margin_right = 229.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 0, 80 )
 size_flags_horizontal = 3

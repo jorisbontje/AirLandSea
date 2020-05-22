@@ -11,6 +11,7 @@ var theater_lanes = []
 var player_hands = []
 var players = [Globals.PLAYERS.P1, Globals.PLAYERS.P2]
 var scores = [0, 0]
+var game_state = Globals.STATES.PLAYING
 var current_player = Globals.PLAYERS.P1
 var current_side = Globals.SIDES.PLAYER
 
@@ -18,6 +19,7 @@ var selected_action = Globals.ACTIONS.NONE
 var selected_card = null
 var selected_theater = Globals.THEATERS.NONE
 
+onready var NewGameButton = find_node("NewGameButton")
 onready var LogLabel = find_node("LogLabel")
 onready var VersionLabel = find_node("VersionLabel")
 onready var ActionPrompt = find_node("ActionPrompt")
@@ -30,6 +32,7 @@ onready var TheaterLane2 = find_node("TheaterLane2")
 onready var TheaterLane3 = find_node("TheaterLane3")
 
 onready var UnitCardView = find_node("UnitCardView")
+onready var WithdrawButton = find_node("WithdrawButton")
 onready var PlayFaceupButton = find_node("PlayFaceupButton")
 onready var PlayFacedownButton = find_node("PlayFacedownButton")
 
@@ -45,6 +48,7 @@ func _load_cards() -> Array:
   return parse_json(text)
 
 func _new_game():
+  LogLabel.clear()
   log_text("NEW GAME")
   theaters.shuffle()
   players.shuffle()
@@ -81,10 +85,18 @@ func _new_round():
   OpponentHand.show_hand = current_side == Globals.SIDES.OPPONENT
   PlayerHand.show_hand = current_side == Globals.SIDES.PLAYER
 
+  OpponentHand.score = scores[Globals.SIDES.OPPONENT]
+  PlayerHand.score = scores[Globals.SIDES.PLAYER]
+
   # Deal cards
   for _i in range(Globals.DEAL_COUNT):
     OpponentHand.deal_card(deck.pop_back())
     PlayerHand.deal_card(deck.pop_back())
+
+  game_state = Globals.STATES.PLAYING
+  NewGameButton.text = "Restart Game"
+  ActionPrompt.text = "Select a card from your hand to play."
+  WithdrawButton.disabled = false
 
 func _other_side(side):
   return 1 - side
@@ -131,7 +143,7 @@ func _deselect_all():
     theater_lane.deselect()
 
 func _next_turn():
-#  ActionPrompt.text = "Select a card from your hand to play."
+  ActionPrompt.text = "Select a card from your hand to play."
   current_player = _other_player(current_player)
   current_side = _other_side(current_side)
   OpponentHand.show_hand = current_side == Globals.SIDES.OPPONENT
@@ -141,11 +153,8 @@ func _next_turn():
 
   var cards_left = player_hands[current_side].hand.size()
   if cards_left == 0:
-    log_text("GAME OVER... counting scores")
+    log_text("End of battle... counting scores")
     game_over()
-    return
-  else:
-    log_text("Cards left: " + str(cards_left))
 
 func log_text(line):
   print(line)
@@ -210,7 +219,6 @@ func is_action_playable(action, card, theater_id):
   return false
 
 func play_card(action, card, theater):
-#  print("PLAY: ", ACTIONS.keys()[action], " ", card, " ", THEATERS.keys()[theater])
 
   # check if it can be played
   if not is_action_playable(action, card, theater):
@@ -223,6 +231,12 @@ func play_card(action, card, theater):
   if not card_in_hand:
     log_text("Couldn't find card in hand...")
     return
+
+  if action == Globals.ACTIONS.PLAY_FACEUP:
+    log_text("Player " + str(current_player) + " plays " + card.type.to_upper() + " " + str(card.strength) + " on " + Globals.THEATERS.keys()[theater])
+  else:
+    log_text("Player " + str(current_player) + " plays face down on " + Globals.THEATERS.keys()[theater])
+
 
   card.faceup = (action == Globals.ACTIONS.PLAY_FACEUP)
 
@@ -260,16 +274,26 @@ func calc_withdraw_score(player, cards_left):
 
 func show_winner():
   if scores[Globals.SIDES.PLAYER] >= Globals.WIN_SCORE:
-    log_text("Player wins!")
+    log_text("Player wins the game!")
   else:
-    log_text("Opponent wins!")
+    log_text("Opponent wins the game!")
 
 func should_play_next_battle():
   if scores[Globals.SIDES.OPPONENT] >= Globals.WIN_SCORE or scores[Globals.SIDES.PLAYER] >= Globals.WIN_SCORE:
     show_winner()
+    game_state = Globals.STATES.END_GAME
+    NewGameButton.text = "New Game"
+    ActionPrompt.text = "Ready for a new game?"
+    WithdrawButton.disabled = true
+    PlayFaceupButton.disabled = true
+    PlayFacedownButton.disabled = true
   else:
-    _next_battle()
-    _new_round()
+    game_state = Globals.STATES.END_BATTLE
+    NewGameButton.text = "Next Battle"
+    ActionPrompt.text = "Ready for the next battle?"
+    WithdrawButton.disabled = true
+    PlayFaceupButton.disabled = true
+    PlayFacedownButton.disabled = true
 
 func play_withdraw():
   var cards_left = player_hands[current_side].hand.size()
@@ -281,16 +305,21 @@ func play_withdraw():
   # TODO refactor
   scores[_other_side(current_side)] += score
   player_hands[_other_side(current_side)].score = scores[_other_side(current_side)]
-
+  _deselect_all()
   should_play_next_battle()
 
 
-
 func _on_NewGameButton_pressed():
-  _new_game()
+  # TODO new battle or new game
+  if game_state == Globals.STATES.END_BATTLE:
+    # TODO don't automatically continue before showing results
+    _next_battle()
+    _new_round()
+  else:
+    _new_game()
 
 func _on_PlayFaceupButton_pressed():
-  log_text("PLAY FACEUP")
+#  log_text("PLAY FACEUP")
   selected_action = Globals.ACTIONS.PLAY_FACEUP
   if selected_theater:
     play_card(selected_action, selected_card, selected_theater)
@@ -298,7 +327,7 @@ func _on_PlayFaceupButton_pressed():
     ActionPrompt.text = "Select a matching theater to play"
 
 func _on_PlayFacedownButton_pressed():
-  log_text("PLAY FACEDOWN")
+#  log_text("PLAY FACEDOWN")
   selected_action = Globals.ACTIONS.PLAY_FACEDOWN
   if selected_theater:
     play_card(selected_action, selected_card, selected_theater)

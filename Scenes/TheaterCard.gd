@@ -27,7 +27,11 @@ func _update_border():
     $"Border".color = Color.gray
 
 func _on_TheaterCard_pressed():
-  print("theater card clicked")
+  if Game and Game.game_state != Globals.STATES.PLAYING:
+    print("Can't select theater card when not playing")
+    return
+
+  # print("theater card clicked")
   set_selected(not selected)
 
   if Game:
