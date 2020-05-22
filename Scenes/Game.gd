@@ -10,6 +10,7 @@ var default_deck: Array
 var theater_lanes = []
 var player_hands = []
 var players = [Globals.PLAYERS.P1, Globals.PLAYERS.P2]
+var player_names = []
 var scores = [0, 0]
 var game_state = Globals.STATES.PLAYING
 var current_player = Globals.PLAYERS.P1
@@ -169,6 +170,7 @@ func _ready():
   randomize()
 
   player_hands = [OpponentHand, PlayerHand]
+  player_names = [OpponentHand.player_name, PlayerHand.player_name]
   theater_lanes = [TheaterLane1, TheaterLane2, TheaterLane3]
   default_deck = _load_cards()
   _new_game()
@@ -236,9 +238,9 @@ func play_card(action, card, theater):
     return
 
   if action == Globals.ACTIONS.PLAY_FACEUP:
-    log_text("Player " + str(current_player) + " plays " + card.type.to_upper() + " " + str(card.strength) + " on " + Globals.THEATERS.keys()[theater])
+    log_text(player_names[current_side] + " plays " + card.type.to_upper() + " " + str(card.strength) + " on " + Globals.THEATERS.keys()[theater])
   else:
-    log_text("Player " + str(current_player) + " plays face down on " + Globals.THEATERS.keys()[theater])
+    log_text(player_names[current_side] + " plays face down on " + Globals.THEATERS.keys()[theater])
 
   card.faceup = (action == Globals.ACTIONS.PLAY_FACEUP)
 
@@ -273,10 +275,12 @@ func calc_withdraw_score(player, cards_left):
       return 6
 
 func show_winner():
+  var winning_side
   if scores[Globals.SIDES.PLAYER] >= Globals.WIN_SCORE:
-    log_text("Player wins the game!")
+    winning_side = Globals.SIDES.PLAYER
   else:
-    log_text("Opponent wins the game!")
+    winning_side = Globals.SIDES.OPPONENT
+  log_text(player_names[winning_side] + " wins the game!")
 
 func should_play_next_battle():
   if scores[Globals.SIDES.OPPONENT] >= Globals.WIN_SCORE or scores[Globals.SIDES.PLAYER] >= Globals.WIN_SCORE:
@@ -295,10 +299,10 @@ func should_play_next_battle():
 
 func play_withdraw():
   var cards_left = player_hands[current_side].hand.size()
-  print("CARDS LEFT ", cards_left)
+#  print("CARDS LEFT ", cards_left)
 
   var score = calc_withdraw_score(current_player, cards_left)
-  log_text("Player " + str(_other_player(current_player)) + " scores " + str(score) + " from withdraw.")
+  log_text(player_names[_other_side(current_side)] + " scores " + str(score) + " from withdraw.")
 
   _score_points(_other_side(current_side), score)
   _deselect_all()
