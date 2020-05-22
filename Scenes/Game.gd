@@ -132,6 +132,9 @@ func game_over():
     push_error("No winner")
     return
 
+  PlayerHand.show_hand = false
+  OpponentHand.show_hand = false
+
   should_play_next_battle()
 
 func _deselect_all():
@@ -281,16 +284,14 @@ func should_play_next_battle():
     game_state = Globals.STATES.END_GAME
     NewGameButton.text = "New Game"
     ActionPrompt.text = "Ready for a new game?"
-    WithdrawButton.disabled = true
-    PlayFaceupButton.disabled = true
-    PlayFacedownButton.disabled = true
   else:
     game_state = Globals.STATES.END_BATTLE
     NewGameButton.text = "Next Battle"
     ActionPrompt.text = "Ready for the next battle?"
-    WithdrawButton.disabled = true
-    PlayFaceupButton.disabled = true
-    PlayFacedownButton.disabled = true
+
+  WithdrawButton.disabled = true
+  PlayFaceupButton.disabled = true
+  PlayFacedownButton.disabled = true
 
 func play_withdraw():
   var cards_left = player_hands[current_side].hand.size()
