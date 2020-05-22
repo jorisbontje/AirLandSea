@@ -254,7 +254,7 @@ func play_card(action, card, theater):
   _next_turn()
 
 func calc_withdraw_score(player, cards_left):
-  print(player, " ", cards_left)
+#  print(player, " ", cards_left)
   if player == Globals.PLAYERS.P1:
     if cards_left >= 4:
       return 2
@@ -299,7 +299,7 @@ func should_play_next_battle():
 
 func play_withdraw():
   var cards_left = player_hands[current_side].hand.size()
-#  print("CARDS LEFT ", cards_left)
+  log_text(player_names[current_side] + " withdraws with " + str(cards_left) + " cards left.")
 
   var score = calc_withdraw_score(current_player, cards_left)
   log_text(player_names[_other_side(current_side)] + " scores " + str(score) + " from withdraw.")
@@ -317,7 +317,6 @@ func _on_NewGameButton_pressed():
     _new_game()
 
 func _on_PlayFaceupButton_pressed():
-#  log_text("PLAY FACEUP")
   selected_action = Globals.ACTIONS.PLAY_FACEUP
   if selected_theater:
     play_card(selected_action, selected_card, selected_theater)
@@ -325,7 +324,6 @@ func _on_PlayFaceupButton_pressed():
     ActionPrompt.text = "Select a matching theater to play"
 
 func _on_PlayFacedownButton_pressed():
-#  log_text("PLAY FACEDOWN")
   selected_action = Globals.ACTIONS.PLAY_FACEDOWN
   if selected_theater:
     play_card(selected_action, selected_card, selected_theater)
@@ -333,7 +331,6 @@ func _on_PlayFacedownButton_pressed():
     ActionPrompt.text = "Select any theater to play"
 
 func _on_WithdrawButton_pressed():
-  log_text("WITHDRAW")
   play_withdraw()
 
 func _input(_event):
