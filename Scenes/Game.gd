@@ -104,6 +104,9 @@ func _new_round():
   ActionPrompt.text = "Select a card from your hand to play."
   WithdrawButton.disabled = false
 
+  if current_side == Constants.SIDES.OPPONENT:
+    _auto_play()
+
 func _other_side(side):
   return 1 - side
 
@@ -164,6 +167,9 @@ func _next_turn():
   if cards_left == 0:
     log_text("End of battle... counting scores")
     game_over()
+
+  if current_side == Constants.SIDES.OPPONENT:
+    _auto_play()
 
 func log_text(line):
   print(line)

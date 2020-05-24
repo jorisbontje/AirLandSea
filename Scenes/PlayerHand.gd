@@ -52,7 +52,7 @@ func deal_card(card):
   hand.append(card)
 
 func take_card(card):
-  print("HAND: ", hand)
+#  print("HAND: ", hand)
   var idx = hand.find(card)
   if idx != -1:
     hand[idx].obj.queue_free()
