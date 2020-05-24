@@ -19,10 +19,6 @@ config/name="AirLandSea"
 run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://Assets/icon.png"
 
-[autoload]
-
-Globals="*res://Scripts/Globals.gd"
-
 [display]
 
 window/size/width=1280
@@ -76,6 +72,11 @@ ui_select_land={
 ui_select_sea={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_auto_play={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"unicode":0,"echo":false,"script":null)
  ]
 }
 

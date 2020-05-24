@@ -1,6 +1,8 @@
 tool
 extends Control
 
+const Constants = preload("res://Scripts/Constants.gd")
+
 export var theater_type = 0 setget set_theater_type
 
 onready var Game = get_node("/root/Game")
@@ -27,7 +29,7 @@ func _update_border():
     $"Border".color = Color.gray
 
 func _on_TheaterCard_pressed():
-  if Game and Game.game_state != Globals.STATES.PLAYING:
+  if Game and Game.game_state != Constants.STATES.PLAYING:
     print("Can't select theater card when not playing")
     return
 

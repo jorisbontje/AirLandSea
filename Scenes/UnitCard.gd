@@ -1,6 +1,8 @@
 tool
 extends Control
 
+const Constants = preload("res://Scripts/Constants.gd")
+
 const FACEDOWN_SPRITE = 7
 export var card_nr = FACEDOWN_SPRITE setget set_card_nr
 export var is_selectable = true
@@ -37,7 +39,7 @@ func _update_border():
     $"Border".color = Color.gray
 
 func _on_UnitCard_pressed():
-  if Game and Game.game_state != Globals.STATES.PLAYING:
+  if Game and Game.game_state != Constants.STATES.PLAYING:
     print("Can't select theater card when not playing")
     return
 

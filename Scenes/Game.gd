@@ -3,22 +3,27 @@ extends Node
 signal card_focussed
 signal card_selected
 
+const Constants = preload("res://Scripts/Constants.gd")
+const RandomAI = preload("res://Scripts/RandomAI.gd")
+
 var theaters = [
-  Globals.THEATERS.AIR, Globals.THEATERS.LAND, Globals.THEATERS.SEA]
+  Constants.THEATERS.AIR, Constants.THEATERS.LAND, Constants.THEATERS.SEA]
 var deck: Array
 var default_deck: Array
 var theater_lanes = []
 var player_hands = []
-var players = [Globals.PLAYERS.P1, Globals.PLAYERS.P2]
+var players = [Constants.PLAYERS.P1, Constants.PLAYERS.P2]
 var player_names = []
 var scores = [0, 0]
-var game_state = Globals.STATES.PLAYING
-var current_player = Globals.PLAYERS.P1
-var current_side = Globals.SIDES.PLAYER
+var ai_player = RandomAI.new(self)
 
-var selected_action = Globals.ACTIONS.NONE
+var game_state = Constants.STATES.PLAYING
+var current_player = Constants.PLAYERS.P1
+var current_side = Constants.SIDES.PLAYER
+
+var selected_action = Constants.ACTIONS.NONE
 var selected_card = null
-var selected_theater = Globals.THEATERS.NONE
+var selected_theater = Constants.THEATERS.NONE
 
 onready var NewGameButton = find_node("NewGameButton")
 onready var LogLabel = find_node("LogLabel")
@@ -74,27 +79,27 @@ func _new_round():
   OpponentHand.clear()
   PlayerHand.clear()
 
-  OpponentHand.is_first = players[Globals.SIDES.OPPONENT] == Globals.PLAYERS.P1
-  PlayerHand.is_first = players[Globals.SIDES.PLAYER] == Globals.PLAYERS.P1
+  OpponentHand.is_first = players[Constants.SIDES.OPPONENT] == Constants.PLAYERS.P1
+  PlayerHand.is_first = players[Constants.SIDES.PLAYER] == Constants.PLAYERS.P1
 
-  current_player = Globals.PLAYERS.P1
-  if current_player == players[Globals.SIDES.PLAYER]:
-    current_side = Globals.SIDES.PLAYER
+  current_player = Constants.PLAYERS.P1
+  if current_player == players[Constants.SIDES.PLAYER]:
+    current_side = Constants.SIDES.PLAYER
   else:
-    current_side = Globals.SIDES.OPPONENT
+    current_side = Constants.SIDES.OPPONENT
 
-  OpponentHand.show_hand = current_side == Globals.SIDES.OPPONENT
-  PlayerHand.show_hand = current_side == Globals.SIDES.PLAYER
+  OpponentHand.show_hand = current_side == Constants.SIDES.OPPONENT
+  PlayerHand.show_hand = current_side == Constants.SIDES.PLAYER
 
-  OpponentHand.score = scores[Globals.SIDES.OPPONENT]
-  PlayerHand.score = scores[Globals.SIDES.PLAYER]
+  OpponentHand.score = scores[Constants.SIDES.OPPONENT]
+  PlayerHand.score = scores[Constants.SIDES.PLAYER]
 
   # Deal cards
-  for _i in range(Globals.DEAL_COUNT):
+  for _i in range(Constants.DEAL_COUNT):
     OpponentHand.deal_card(deck.pop_back())
     PlayerHand.deal_card(deck.pop_back())
 
-  game_state = Globals.STATES.PLAYING
+  game_state = Constants.STATES.PLAYING
   NewGameButton.text = "Restart Game"
   ActionPrompt.text = "Select a card from your hand to play."
   WithdrawButton.disabled = false
@@ -124,11 +129,11 @@ func game_over():
         player_wins += 1
 
   if opponent_wins >= 2:
-    log_text("Opponent controls at least 2 theaters and scores " + str(Globals.BATTLE_SCORE) + " points.")
-    _score_points(Globals.SIDES.OPPONENT, Globals.BATTLE_SCORE)
+    log_text("Opponent controls at least 2 theaters and scores " + str(Constants.BATTLE_SCORE) + " points.")
+    _score_points(Constants.SIDES.OPPONENT, Constants.BATTLE_SCORE)
   elif player_wins >= 2:
-    log_text("Player controls at least 2 theaters and scores " + str(Globals.BATTLE_SCORE) + " points.")
-    _score_points(Globals.SIDES.PLAYER, Globals.BATTLE_SCORE)
+    log_text("Player controls at least 2 theaters and scores " + str(Constants.BATTLE_SCORE) + " points.")
+    _score_points(Constants.SIDES.PLAYER, Constants.BATTLE_SCORE)
   else:
     push_error("No winner")
     return
@@ -139,8 +144,8 @@ func game_over():
   should_play_next_battle()
 
 func _deselect_all():
-  selected_action = Globals.ACTIONS.NONE
-  selected_theater = Globals.THEATERS.NONE
+  selected_action = Constants.ACTIONS.NONE
+  selected_theater = Constants.THEATERS.NONE
   card_selected(null)
 
   for theater_lane in theater_lanes:
@@ -150,8 +155,8 @@ func _next_turn():
   ActionPrompt.text = "Select a card from your hand to play."
   current_player = _other_player(current_player)
   current_side = _other_side(current_side)
-  OpponentHand.show_hand = current_side == Globals.SIDES.OPPONENT
-  PlayerHand.show_hand = current_side == Globals.SIDES.PLAYER
+  OpponentHand.show_hand = current_side == Constants.SIDES.OPPONENT
+  PlayerHand.show_hand = current_side == Constants.SIDES.PLAYER
 
   _deselect_all()
 
@@ -166,7 +171,7 @@ func log_text(line):
   LogLabel.newline()
 
 func _ready():
-  VersionLabel.text = Globals.VERSION
+  VersionLabel.text = Constants.VERSION
   randomize()
 
   player_hands = [OpponentHand, PlayerHand]
@@ -217,14 +222,13 @@ func theater_selected(theater_type):
       ActionPrompt.text = "Select a card from your hand to play."
 
 func is_action_playable(action, card, theater_id):
-  if action == Globals.ACTIONS.PLAY_FACEDOWN:
+  if action == Constants.ACTIONS.PLAY_FACEDOWN:
     return true
-  elif action == Globals.ACTIONS.PLAY_FACEUP and Globals.theater_ids[card.type] == theater_id:
+  elif action == Constants.ACTIONS.PLAY_FACEUP and Constants.THEATER_IDS[card.type] == theater_id:
     return true
   return false
 
 func play_card(action, card, theater):
-
   # check if it can be played
   if not is_action_playable(action, card, theater):
     log_text("Can't play this action here...")
@@ -237,12 +241,12 @@ func play_card(action, card, theater):
     log_text("Couldn't find card in hand...")
     return
 
-  if action == Globals.ACTIONS.PLAY_FACEUP:
-    log_text(player_names[current_side] + " plays " + card.type.to_upper() + " " + str(card.strength) + " on " + Globals.THEATERS.keys()[theater])
+  if action == Constants.ACTIONS.PLAY_FACEUP:
+    log_text(player_names[current_side] + " plays " + card.type.to_upper() + " " + str(card.strength) + " on " + Constants.THEATERS.keys()[theater])
   else:
-    log_text(player_names[current_side] + " plays face down on " + Globals.THEATERS.keys()[theater])
+    log_text(player_names[current_side] + " plays face down on " + Constants.THEATERS.keys()[theater])
 
-  card.faceup = (action == Globals.ACTIONS.PLAY_FACEUP)
+  card.faceup = (action == Constants.ACTIONS.PLAY_FACEUP)
 
   # add card to board
   for theater_lane in theater_lanes:
@@ -253,9 +257,13 @@ func play_card(action, card, theater):
 
   _next_turn()
 
+func _auto_play():
+  log_text("Beep boop boop...")
+  ai_player.play()
+
 func calc_withdraw_score(player, cards_left):
 #  print(player, " ", cards_left)
-  if player == Globals.PLAYERS.P1:
+  if player == Constants.PLAYERS.P1:
     if cards_left >= 4:
       return 2
     elif cards_left >= 2:
@@ -276,20 +284,20 @@ func calc_withdraw_score(player, cards_left):
 
 func show_winner():
   var winning_side
-  if scores[Globals.SIDES.PLAYER] >= Globals.WIN_SCORE:
-    winning_side = Globals.SIDES.PLAYER
+  if scores[Constants.SIDES.PLAYER] >= Constants.WIN_SCORE:
+    winning_side = Constants.SIDES.PLAYER
   else:
-    winning_side = Globals.SIDES.OPPONENT
+    winning_side = Constants.SIDES.OPPONENT
   log_text(player_names[winning_side] + " wins the game!")
 
 func should_play_next_battle():
-  if scores[Globals.SIDES.OPPONENT] >= Globals.WIN_SCORE or scores[Globals.SIDES.PLAYER] >= Globals.WIN_SCORE:
+  if scores[Constants.SIDES.OPPONENT] >= Constants.WIN_SCORE or scores[Constants.SIDES.PLAYER] >= Constants.WIN_SCORE:
     show_winner()
-    game_state = Globals.STATES.END_GAME
+    game_state = Constants.STATES.END_GAME
     NewGameButton.text = "New Game"
     ActionPrompt.text = "Ready for a new game?"
   else:
-    game_state = Globals.STATES.END_BATTLE
+    game_state = Constants.STATES.END_BATTLE
     NewGameButton.text = "Next Battle"
     ActionPrompt.text = "Ready for the next battle?"
 
@@ -310,21 +318,21 @@ func play_withdraw():
 
 
 func _on_NewGameButton_pressed():
-  if game_state == Globals.STATES.END_BATTLE:
+  if game_state == Constants.STATES.END_BATTLE:
     _next_battle()
     _new_round()
   else:
     _new_game()
 
 func _on_PlayFaceupButton_pressed():
-  selected_action = Globals.ACTIONS.PLAY_FACEUP
+  selected_action = Constants.ACTIONS.PLAY_FACEUP
   if selected_theater:
     play_card(selected_action, selected_card, selected_theater)
   else:
     ActionPrompt.text = "Select a matching theater to play"
 
 func _on_PlayFacedownButton_pressed():
-  selected_action = Globals.ACTIONS.PLAY_FACEDOWN
+  selected_action = Constants.ACTIONS.PLAY_FACEDOWN
   if selected_theater:
     play_card(selected_action, selected_card, selected_theater)
   else:
@@ -349,11 +357,13 @@ func _input(_event):
   elif Input.is_action_pressed("ui_select_6"):
     player_hands[current_side].select_card(6)
   elif Input.is_action_pressed("ui_select_air"):
-    _select_theater_lane(Globals.THEATERS.AIR)
+    _select_theater_lane(Constants.THEATERS.AIR)
   elif Input.is_action_pressed("ui_select_land"):
-    _select_theater_lane(Globals.THEATERS.LAND)
+    _select_theater_lane(Constants.THEATERS.LAND)
   elif Input.is_action_pressed("ui_select_sea"):
-    _select_theater_lane(Globals.THEATERS.SEA)
+    _select_theater_lane(Constants.THEATERS.SEA)
+  elif Input.is_action_pressed("ui_auto_play"):
+    _auto_play()
 
 func _on_CenterContainer_gui_input(event):
   if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
