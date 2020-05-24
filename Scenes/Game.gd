@@ -117,7 +117,7 @@ func _score_points(side, score):
   scores[side] += score
   player_hands[side].score = scores[side]
 
-func game_over():
+func _find_winner_side():
   var opponent_wins = 0
   var player_wins = 0
   for theater_lane in theater_lanes:
@@ -132,14 +132,17 @@ func game_over():
         player_wins += 1
 
   if opponent_wins >= 2:
-    log_text("Opponent controls at least 2 theaters and scores " + str(Constants.BATTLE_SCORE) + " points.")
-    _score_points(Constants.SIDES.OPPONENT, Constants.BATTLE_SCORE)
+    return Constants.SIDES.OPPONENT
   elif player_wins >= 2:
-    log_text("Player controls at least 2 theaters and scores " + str(Constants.BATTLE_SCORE) + " points.")
-    _score_points(Constants.SIDES.PLAYER, Constants.BATTLE_SCORE)
+    return Constants.SIDES.PLAYER
   else:
     push_error("No winner")
     return
+
+func game_over():
+  var winner_side = _find_winner_side()
+  log_text(player_names[winner_side] + " controls at least 2 theaters and scores " + str(Constants.BATTLE_SCORE) + " points.")
+  _score_points(winner_side, Constants.BATTLE_SCORE)
 
   PlayerHand.show_hand = false
   OpponentHand.show_hand = false
@@ -167,6 +170,7 @@ func _next_turn():
   if cards_left == 0:
     log_text("End of battle... counting scores")
     game_over()
+    return
 
   if current_side == Constants.SIDES.OPPONENT:
     _auto_play()
