@@ -62,6 +62,7 @@ func _new_game():
   _new_round()
 
 func _next_battle():
+  LogLabel.clear()
   log_text("NEXT BATTLE")
   players.push_front(players.pop_back())
   theaters.push_front(theaters.pop_back())
@@ -103,6 +104,8 @@ func _new_round():
   NewGameButton.text = "Restart Game"
   ActionPrompt.text = "Select a card from your hand to play."
   WithdrawButton.disabled = false
+  var withdraw_score = calc_withdraw_score(current_player, Constants.DEAL_COUNT)
+  WithdrawButton.text = "Withdraw (-" + str(withdraw_score) + " pt)"
 
   if current_side == Constants.SIDES.OPPONENT:
     _auto_play()
@@ -171,6 +174,9 @@ func _next_turn():
     log_text("End of battle... counting scores")
     game_over()
     return
+
+  var withdraw_score = calc_withdraw_score(current_player, cards_left)
+  WithdrawButton.text = "Withdraw (-" + str(withdraw_score) + " pt)"
 
   if current_side == Constants.SIDES.OPPONENT:
     _auto_play()
@@ -268,8 +274,9 @@ func play_card(action, card, theater):
   _next_turn()
 
 func _auto_play():
-  log_text("Beep boop boop...")
-  ai_player.play()
+  if game_state == Constants.STATES.PLAYING:
+    log_text("Beep boop boop...")
+    ai_player.play()
 
 func calc_withdraw_score(player, cards_left):
 #  print(player, " ", cards_left)

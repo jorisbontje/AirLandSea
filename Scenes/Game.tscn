@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/UnitCard.tscn" type="PackedScene" id=3]
@@ -7,6 +7,12 @@
 [ext_resource path="res://Scenes/TheaterLane.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Theme" id=1]
+
+[sub_resource type="InputEventKey" id=9]
+scancode = 78
+
+[sub_resource type="ShortCut" id=10]
+shortcut = SubResource( 9 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.423529, 0.423529, 0.423529, 1 )
@@ -73,6 +79,7 @@ margin_right = 240.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 120, 60 )
 size_flags_vertical = 0
+shortcut = SubResource( 10 )
 text = "New Game"
 
 [node name="LogLabel" type="RichTextLabel" parent="CenterContainer/HBoxContainer/DebugSidebar"]
@@ -97,6 +104,7 @@ self_modulate = Color( 0.768627, 0.698039, 0.698039, 1 )
 margin_left = 304.0
 margin_right = 829.0
 margin_bottom = 586.0
+rect_min_size = Vector2( 525, 0 )
 custom_constants/separation = 16
 __meta__ = {
 "_edit_use_anchors_": false
