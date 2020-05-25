@@ -108,7 +108,7 @@ func _new_round():
   WithdrawButton.text = "Withdraw (-" + str(withdraw_score) + " pt)"
 
   if current_side == Constants.SIDES.OPPONENT:
-    _auto_play()
+    call_deferred("_auto_play")
 
 func _other_side(side):
   return 1 - side
@@ -179,7 +179,7 @@ func _next_turn():
   WithdrawButton.text = "Withdraw (-" + str(withdraw_score) + " pt)"
 
   if current_side == Constants.SIDES.OPPONENT:
-    _auto_play()
+    call_deferred("_auto_play")
 
 func log_text(line):
   print(line)
@@ -380,7 +380,7 @@ func _input(_event):
   elif Input.is_action_pressed("ui_select_sea"):
     _select_theater_lane(Constants.THEATERS.SEA)
   elif Input.is_action_pressed("ui_auto_play"):
-    _auto_play()
+    call_deferred("_auto_play")
 
 func _on_CenterContainer_gui_input(event):
   if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
