@@ -8,32 +8,32 @@
 
 [sub_resource type="Theme" id=1]
 
-[sub_resource type="InputEventKey" id=9]
+[sub_resource type="InputEventKey" id=2]
 scancode = 78
 
-[sub_resource type="ShortCut" id=10]
-shortcut = SubResource( 9 )
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.423529, 0.423529, 0.423529, 1 )
 
-[sub_resource type="InputEventKey" id=3]
-scancode = 87
-
-[sub_resource type="ShortCut" id=4]
-shortcut = SubResource( 3 )
-
 [sub_resource type="InputEventKey" id=5]
-scancode = 85
+scancode = 87
 
 [sub_resource type="ShortCut" id=6]
 shortcut = SubResource( 5 )
 
 [sub_resource type="InputEventKey" id=7]
-scancode = 68
+scancode = 85
 
 [sub_resource type="ShortCut" id=8]
 shortcut = SubResource( 7 )
+
+[sub_resource type="InputEventKey" id=9]
+scancode = 68
+
+[sub_resource type="ShortCut" id=10]
+shortcut = SubResource( 9 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -79,7 +79,7 @@ margin_right = 240.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 120, 60 )
 size_flags_vertical = 0
-shortcut = SubResource( 10 )
+shortcut = SubResource( 3 )
 text = "New Game"
 
 [node name="LogLabel" type="RichTextLabel" parent="CenterContainer/HBoxContainer/DebugSidebar"]
@@ -88,7 +88,7 @@ margin_right = 240.0
 margin_bottom = 556.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 2 )
+custom_styles/normal = SubResource( 4 )
 text = "Log:
 "
 scroll_following = true
@@ -176,7 +176,7 @@ margin_right = 229.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 120, 60 )
 size_flags_vertical = 0
-shortcut = SubResource( 4 )
+shortcut = SubResource( 6 )
 text = "Withdraw"
 
 [node name="UnitCardView" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar" instance=ExtResource( 4 )]
@@ -220,7 +220,7 @@ rect_min_size = Vector2( 0, 80 )
 size_flags_horizontal = 3
 size_flags_vertical = 0
 disabled = true
-shortcut = SubResource( 6 )
+shortcut = SubResource( 8 )
 text = "Play Faceup"
 
 [node name="PlayFacedownButton" type="Button" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar/HBoxContainer"]
@@ -231,7 +231,7 @@ rect_min_size = Vector2( 0, 80 )
 size_flags_horizontal = 3
 size_flags_vertical = 0
 disabled = true
-shortcut = SubResource( 8 )
+shortcut = SubResource( 10 )
 text = "Play Facedown"
 [connection signal="card_focussed" from="." to="CenterContainer/HBoxContainer/CenterContainer/SideBar/UnitCardView" method="_on_Game_card_focussed"]
 [connection signal="card_selected" from="." to="CenterContainer/HBoxContainer/CenterContainer/SideBar/UnitCardView" method="_on_Game_card_selected"]
