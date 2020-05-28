@@ -4,6 +4,7 @@
     "strength": 1,
     "ability": "support",
     "duration": "ongoing",
+    "description": "You gain +3 strength in each adjacent theater.",
     "sprite_id": 18
   },
   {
@@ -11,6 +12,7 @@
     "strength": 1,
     "ability": "reinforce",
     "duration": "instant",
+    "description": "Look at the top card of the deck. You may play it facedown to an adjacent theater.",
     "sprite_id": 0
   },
   {
@@ -18,6 +20,7 @@
     "strength": 1,
     "ability": "transport",
     "duration": "instant",
+    "description": "You may MOVE 1 of your cards to a different theater.",
     "sprite_id": 12
   },
   {
@@ -25,6 +28,7 @@
     "strength": 2,
     "ability": "air drop",
     "duration": "instant",
+    "description": "On your next turn, you may play a card to a non-matching theater.",
     "sprite_id": 19
   },
   {
@@ -32,6 +36,7 @@
     "strength": 2,
     "ability": "ambush",
     "duration": "instant",
+    "description": "FLIP a card in any theater.",
     "sprite_id": 1
   },
   {
@@ -39,6 +44,7 @@
     "strength": 2,
     "ability": "escalation",
     "duration": "ongoing",
+    "description": "All of your facedown cards are now strength 4.",
     "sprite_id": 13
   },
   {
@@ -46,6 +52,7 @@
     "strength": 3,
     "ability": "maneuver",
     "duration": "instant",
+    "description": "",
     "sprite_id": 20
   },
   {
@@ -53,6 +60,7 @@
     "strength": 3,
     "ability": "maneuver",
     "duration": "instant",
+    "description": "",
     "sprite_id": 2
   },
   {
@@ -60,6 +68,7 @@
     "strength": 3,
     "ability": "maneuver",
     "duration": "instant",
+    "description": "",
     "sprite_id": 14
   },
   {
@@ -67,6 +76,7 @@
     "strength": 4,
     "ability": "aerodrome",
     "duration": "ongoing",
+    "description": "",
     "sprite_id": 9
   },
   {
@@ -74,6 +84,7 @@
     "strength": 4,
     "ability": "cover fire",
     "duration": "ongoing",
+    "description": "",
     "sprite_id": 21
   },
   {
@@ -81,6 +92,7 @@
     "strength": 4,
     "ability": "redeploy",
     "duration": "instant",
+    "description": "",
     "sprite_id": 3
   },
   {
@@ -88,6 +100,7 @@
     "strength": 5,
     "ability": "containment",
     "duration": "ongoing",
+    "description": "",
     "sprite_id": 10
   },
   {
@@ -95,6 +108,7 @@
     "strength": 5,
     "ability": "disrupt",
     "duration": "instant",
+    "description": "",
     "sprite_id": 22
   },
   {
@@ -102,6 +116,7 @@
     "strength": 5,
     "ability": "blockade",
     "duration": "ongoing",
+    "description": "",
     "sprite_id": 4
   },
   {
