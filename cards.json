@@ -52,7 +52,7 @@
     "strength": 3,
     "ability": "maneuver",
     "duration": "instant",
-    "description": "",
+    "description": "FLIP a card in an adjacent theater.",
     "sprite_id": 20
   },
   {
@@ -60,7 +60,7 @@
     "strength": 3,
     "ability": "maneuver",
     "duration": "instant",
-    "description": "",
+    "description": "FLIP a card in an adjacent theater.",
     "sprite_id": 2
   },
   {
@@ -68,7 +68,7 @@
     "strength": 3,
     "ability": "maneuver",
     "duration": "instant",
-    "description": "",
+    "description": "FLIP a card in an adjacent theater.",
     "sprite_id": 14
   },
   {
@@ -76,7 +76,7 @@
     "strength": 4,
     "ability": "aerodrome",
     "duration": "ongoing",
-    "description": "",
+    "description": "You may play cards of strength 3 or less to non-matching theaters.",
     "sprite_id": 9
   },
   {
@@ -84,7 +84,7 @@
     "strength": 4,
     "ability": "cover fire",
     "duration": "ongoing",
-    "description": "",
+    "description": "All cards COVERED by this card are now strength 4.",
     "sprite_id": 21
   },
   {
@@ -92,7 +92,7 @@
     "strength": 4,
     "ability": "redeploy",
     "duration": "instant",
-    "description": "",
+    "description": "Return 1 of your facedown cards to your hand. If you do, gain an extra turn.",
     "sprite_id": 3
   },
   {
@@ -100,7 +100,7 @@
     "strength": 5,
     "ability": "containment",
     "duration": "ongoing",
-    "description": "",
+    "description": "If either player plays a card facedown, DISCARD that card with no effect.",
     "sprite_id": 10
   },
   {
@@ -108,7 +108,7 @@
     "strength": 5,
     "ability": "disrupt",
     "duration": "instant",
-    "description": "",
+    "description": "Your opponent chooses and FLIPS 1 of their cards. Then you FLIP 1 of yours.",
     "sprite_id": 22
   },
   {
@@ -116,7 +116,7 @@
     "strength": 5,
     "ability": "blockade",
     "duration": "ongoing",
-    "description": "",
+    "description": "If a card is played in an adjacent theater with 3 or more cards already in it (counting both players' cards), DISCARD that card with no effect.",
     "sprite_id": 4
   },
   {
