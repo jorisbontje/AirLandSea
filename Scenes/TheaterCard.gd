@@ -5,7 +5,7 @@ const Constants = preload("res://Scripts/Constants.gd")
 
 export var theater_type = 0 setget set_theater_type
 
-onready var Game = get_node("/root/Game")
+onready var Game = get_node_or_null("/root/Game")
 
 var selected = false setget set_selected
 var entered = false
@@ -14,6 +14,8 @@ func set_theater_type(new_theater_type):
   if theater_type != new_theater_type:
     theater_type = new_theater_type
     $"theater-cards".frame = new_theater_type
+    $"Label".text = Constants.THEATERS.keys()[theater_type]
+    $"Background".color = Constants.THEATER_COLORS[theater_type]
 
 func set_selected(new_selected):
   if selected != new_selected:

@@ -7,7 +7,7 @@ const FACEDOWN_SPRITE = 7
 export var card_nr = FACEDOWN_SPRITE setget set_card_nr
 export var is_selectable = true
 
-onready var Game = get_node("/root/Game")
+onready var Game = get_node_or_null("/root/Game")
 
 
 var card setget set_card
@@ -59,7 +59,7 @@ func _on_UnitCard_mouse_entered():
   _update_border()
 
   if Game:
-    Game.card_nr_focussed(card_nr)
+    Game.card_focussed(card)
 
 func _on_UnitCard_mouse_exited():
 #  print("exited")
@@ -67,4 +67,4 @@ func _on_UnitCard_mouse_exited():
   _update_border()
 
   if Game:
-    Game.card_nr_focussed(null)
+    Game.card_focussed(null)

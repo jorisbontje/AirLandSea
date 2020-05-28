@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/DefaultUI.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/UnitCard.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/UnitCardView.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/PlayerHand.tscn" type="PackedScene" id=5]
@@ -57,10 +58,10 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
-margin_left = 79.0
-margin_top = 67.0
-margin_right = 1201.0
-margin_bottom = 653.0
+margin_left = 76.0
+margin_top = 62.0
+margin_right = 1204.0
+margin_bottom = 658.0
 custom_constants/separation = 64
 __meta__ = {
 "_edit_use_anchors_": false
@@ -68,7 +69,7 @@ __meta__ = {
 
 [node name="DebugSidebar" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
 margin_right = 240.0
-margin_bottom = 586.0
+margin_bottom = 596.0
 rect_min_size = Vector2( 240, 60 )
 rect_pivot_offset = Vector2( -571.828, -65 )
 theme = SubResource( 1 )
@@ -79,13 +80,14 @@ margin_right = 240.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 120, 60 )
 size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
 shortcut = SubResource( 3 )
 text = "New Game"
 
 [node name="LogLabel" type="RichTextLabel" parent="CenterContainer/HBoxContainer/DebugSidebar"]
 margin_top = 76.0
 margin_right = 240.0
-margin_bottom = 556.0
+margin_bottom = 561.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/normal = SubResource( 4 )
@@ -94,16 +96,17 @@ text = "Log:
 scroll_following = true
 
 [node name="VersionLabel" type="Label" parent="CenterContainer/HBoxContainer/DebugSidebar"]
-margin_top = 572.0
+margin_top = 577.0
 margin_right = 240.0
-margin_bottom = 586.0
+margin_bottom = 596.0
+custom_fonts/font = ExtResource( 2 )
 text = "AirLandSea v0.0.0"
 
 [node name="Board" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
 self_modulate = Color( 0.768627, 0.698039, 0.698039, 1 )
 margin_left = 304.0
 margin_right = 829.0
-margin_bottom = 586.0
+margin_bottom = 596.0
 rect_min_size = Vector2( 525, 0 )
 custom_constants/separation = 16
 __meta__ = {
@@ -111,16 +114,16 @@ __meta__ = {
 }
 
 [node name="OpponentHand" parent="CenterContainer/HBoxContainer/Board" instance=ExtResource( 5 )]
-margin_bottom = 14.0
+margin_bottom = 19.0
 rect_min_size = Vector2( 0, 0 )
 player_name = "Easy AI"
 is_first = false
 show_hand = false
 
 [node name="BoardRow" type="HBoxContainer" parent="CenterContainer/HBoxContainer/Board"]
-margin_top = 30.0
+margin_top = 35.0
 margin_right = 525.0
-margin_bottom = 433.0
+margin_bottom = 438.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
@@ -157,44 +160,46 @@ margin_right = 79.0
 margin_bottom = 256.0
 
 [node name="PlayerHand" parent="CenterContainer/HBoxContainer/Board" instance=ExtResource( 5 )]
-margin_top = 449.0
-margin_bottom = 586.0
+margin_top = 454.0
+margin_bottom = 596.0
 rect_min_size = Vector2( 0, 0 )
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/HBoxContainer"]
 margin_left = 893.0
-margin_right = 1122.0
-margin_bottom = 586.0
+margin_right = 1128.0
+margin_bottom = 596.0
 
 [node name="SideBar" type="VBoxContainer" parent="CenterContainer/HBoxContainer/CenterContainer"]
-margin_right = 229.0
-margin_bottom = 586.0
+margin_right = 235.0
+margin_bottom = 596.0
 custom_constants/separation = 16
 
 [node name="WithdrawButton" type="Button" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
-margin_right = 229.0
+margin_right = 235.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 120, 60 )
 size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
 shortcut = SubResource( 6 )
 text = "Withdraw"
 
 [node name="UnitCardView" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar" instance=ExtResource( 4 )]
 margin_top = 76.0
-margin_right = 229.0
+margin_right = 235.0
 margin_bottom = 395.0
 
 [node name="Spacer2" type="Control" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
 margin_top = 411.0
-margin_right = 229.0
+margin_right = 235.0
 margin_bottom = 419.0
 rect_min_size = Vector2( 0, 8 )
 
 [node name="ActionPrompt" type="Label" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
 margin_top = 435.0
-margin_right = 229.0
-margin_bottom = 466.0
+margin_right = 235.0
+margin_bottom = 476.0
 rect_min_size = Vector2( 229, 31 )
+custom_fonts/font = ExtResource( 2 )
 text = "Select a card from your hand to play."
 autowrap = true
 __meta__ = {
@@ -202,34 +207,36 @@ __meta__ = {
 }
 
 [node name="Spacer3" type="Control" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
-margin_top = 482.0
-margin_right = 229.0
-margin_bottom = 490.0
+margin_top = 492.0
+margin_right = 235.0
+margin_bottom = 500.0
 rect_min_size = Vector2( 0, 8 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar"]
-margin_top = 506.0
-margin_right = 229.0
-margin_bottom = 586.0
+margin_top = 516.0
+margin_right = 235.0
+margin_bottom = 596.0
 custom_constants/separation = 16
 
 [node name="PlayFaceupButton" type="Button" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar/HBoxContainer"]
-margin_right = 106.0
+margin_right = 99.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 0, 80 )
 size_flags_horizontal = 3
 size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
 disabled = true
 shortcut = SubResource( 8 )
 text = "Play Faceup"
 
 [node name="PlayFacedownButton" type="Button" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar/HBoxContainer"]
-margin_left = 122.0
-margin_right = 229.0
+margin_left = 115.0
+margin_right = 235.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 0, 80 )
 size_flags_horizontal = 3
 size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
 disabled = true
 shortcut = SubResource( 10 )
 text = "Play Facedown"

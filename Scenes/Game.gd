@@ -204,8 +204,8 @@ func _select_theater_lane(theater_type, select=true):
       else:
         theater_lane.deselect()
 
-func card_nr_focussed(card_nr):
-  emit_signal("card_focussed", card_nr)
+func card_focussed(card):
+  emit_signal("card_focussed", card)
 
 func card_selected(card):
   emit_signal("card_selected", card)
