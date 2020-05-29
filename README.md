@@ -4,8 +4,7 @@ This folder contains a `project.godot` file, which is the project meant to
 be used with [Godot Engine](https://godotengine.org), the open source
 2D and 3D game engine.
 
-![Screenshot v0.1.8](/Assets/screenshot.png?raw=true)
-
+![Screenshot v0.1.10](/Assets/screenshot.png?raw=true)
 ## Getting started and rules
 
 - [How to Play Air Land & Sea w/ the Designer (video)](https://www.youtube.com/watch?v=OrnKNBuH_Z8)
