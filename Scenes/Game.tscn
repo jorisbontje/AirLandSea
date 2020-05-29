@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/DefaultUI.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/UnitCard.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/UnitCardView.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/UnitCardZoom.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/PlayerHand.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/TheaterLane.tscn" type="PackedScene" id=6]
 
@@ -118,6 +118,7 @@ margin_bottom = 19.0
 rect_min_size = Vector2( 0, 0 )
 player_name = "Easy AI"
 is_first = false
+score = 0
 show_hand = false
 
 [node name="BoardRow" type="HBoxContainer" parent="CenterContainer/HBoxContainer/Board"]
@@ -135,6 +136,7 @@ alignment = 1
 margin_left = 35.0
 margin_right = 144.0
 margin_bottom = 403.0
+theater_type = 1
 
 [node name="TheaterLane2" parent="CenterContainer/HBoxContainer/Board/BoardRow" instance=ExtResource( 6 )]
 margin_left = 160.0
@@ -158,11 +160,16 @@ rect_min_size = Vector2( 79, 0 )
 margin_top = 147.0
 margin_right = 79.0
 margin_bottom = 256.0
+card_nr = 7
 
 [node name="PlayerHand" parent="CenterContainer/HBoxContainer/Board" instance=ExtResource( 5 )]
 margin_top = 454.0
 margin_bottom = 596.0
 rect_min_size = Vector2( 0, 0 )
+player_name = "Player"
+is_first = true
+score = 0
+show_hand = true
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/HBoxContainer"]
 margin_left = 893.0
@@ -183,7 +190,7 @@ custom_fonts/font = ExtResource( 2 )
 shortcut = SubResource( 6 )
 text = "Withdraw"
 
-[node name="UnitCardView" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar" instance=ExtResource( 4 )]
+[node name="UnitCardZoom" parent="CenterContainer/HBoxContainer/CenterContainer/SideBar" instance=ExtResource( 4 )]
 margin_top = 76.0
 margin_right = 235.0
 margin_bottom = 395.0
@@ -240,8 +247,8 @@ custom_fonts/font = ExtResource( 2 )
 disabled = true
 shortcut = SubResource( 10 )
 text = "Play Facedown"
-[connection signal="card_focussed" from="." to="CenterContainer/HBoxContainer/CenterContainer/SideBar/UnitCardView" method="_on_Game_card_focussed"]
-[connection signal="card_selected" from="." to="CenterContainer/HBoxContainer/CenterContainer/SideBar/UnitCardView" method="_on_Game_card_selected"]
+[connection signal="card_focussed" from="." to="CenterContainer/HBoxContainer/CenterContainer/SideBar/UnitCardZoom" method="_on_Game_card_focussed"]
+[connection signal="card_selected" from="." to="CenterContainer/HBoxContainer/CenterContainer/SideBar/UnitCardZoom" method="_on_Game_card_selected"]
 [connection signal="gui_input" from="CenterContainer" to="." method="_on_CenterContainer_gui_input"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/DebugSidebar/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/CenterContainer/SideBar/WithdrawButton" to="." method="_on_WithdrawButton_pressed"]

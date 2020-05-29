@@ -37,7 +37,7 @@ onready var TheaterLane1 = find_node("TheaterLane1")
 onready var TheaterLane2 = find_node("TheaterLane2")
 onready var TheaterLane3 = find_node("TheaterLane3")
 
-onready var UnitCardView = find_node("UnitCardView")
+onready var UnitCardZoom = find_node("UnitCardZoom")
 onready var WithdrawButton = find_node("WithdrawButton")
 onready var PlayFaceupButton = find_node("PlayFaceupButton")
 onready var PlayFacedownButton = find_node("PlayFacedownButton")
@@ -76,7 +76,7 @@ func _new_round():
     theater_lanes[lane_nr].theater_type = theaters[lane_nr]
     theater_lanes[lane_nr].clear()
 
-  UnitCardView.deselect()
+  UnitCardZoom.deselect()
   OpponentHand.clear()
   PlayerHand.clear()
 
