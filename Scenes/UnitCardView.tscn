@@ -28,11 +28,12 @@ __meta__ = {
 }
 
 [node name="BackLabel" type="Label" parent="."]
-margin_left = -7.93161
-margin_top = 152.129
-margin_right = 137.068
-margin_bottom = 335.129
+margin_left = 31.0
+margin_top = 81.0
+margin_right = 176.0
+margin_bottom = 264.0
 rect_rotation = -33.0
+rect_pivot_offset = Vector2( 72, 91 )
 custom_fonts/font = ExtResource( 2 )
 text = "AIR
 LAND
