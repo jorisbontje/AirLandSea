@@ -3,12 +3,9 @@ extends Control
 
 const Constants = preload("res://Scripts/Constants.gd")
 
-const FACEDOWN_SPRITE = 7
-export var card_nr = FACEDOWN_SPRITE setget set_card_nr
 export var is_selectable = true
 
 onready var Game = get_node_or_null("/root/Game")
-
 
 var card setget set_card
 var selected = false
@@ -16,15 +13,7 @@ var entered = false
 
 func set_card(new_card):
   card = new_card
-  if card.get('faceup', false):
-    set_card_nr(card.sprite_id)
-  else:
-    set_card_nr(FACEDOWN_SPRITE)
-
-func set_card_nr(new_card_nr):
-  if card_nr != new_card_nr:
-    card_nr = new_card_nr
-    $"unit-cards".frame = card_nr
+  $UnitCardView.card = card
 
 func deselect():
   selected = false

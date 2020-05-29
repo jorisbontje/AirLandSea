@@ -5,12 +5,7 @@ const Constants = preload("res://Scripts/Constants.gd")
 var card = null setget set_card
 
 func _update_view():
-  if not card:
-    return
-  $"unit-cards".frame = card.sprite_id
-  $Background.visible = true
-  $StrengthLabel.visible = true
-  if card.faceup:
+  if card and card.faceup:
     $AbilityLabel.visible = true
     $Background.color = Constants.THEATER_COLORS[card.type]
     $StrengthLabel.text = str(card.strength)

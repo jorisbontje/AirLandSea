@@ -13,7 +13,6 @@ var entered = false
 func set_theater_type(new_theater_type):
   if theater_type != new_theater_type:
     theater_type = new_theater_type
-    $"theater-cards".frame = new_theater_type
     $"Label".text = Constants.THEATERS.keys()[theater_type]
     $"Background".color = Constants.THEATER_COLORS[theater_type]
 

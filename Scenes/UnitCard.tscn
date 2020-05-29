@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/unit-cards.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/UnitCard.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/UnitCardView.tscn" type="PackedScene" id=3]
 
 [node name="UnitCard" type="Button"]
 margin_right = 77.0
@@ -24,14 +24,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="unit-cards" type="Sprite" parent="."]
-position = Vector2( 2, 2 )
-scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 1 )
-centered = false
-vframes = 3
-hframes = 9
-frame = 6
+[node name="UnitCardView" parent="." instance=ExtResource( 3 )]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 81.0
+margin_bottom = 111.0
+rect_min_size = Vector2( 79, 109 )
+rect_scale = Vector2( 0.333, 0.333 )
+mouse_filter = 2
 [connection signal="mouse_entered" from="." to="." method="_on_UnitCard_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_UnitCard_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_UnitCard_pressed"]

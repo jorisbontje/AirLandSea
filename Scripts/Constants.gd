@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION = "AirLandSea 0.1.8"
+const VERSION = "AirLandSea 0.1.10"
 const DEAL_COUNT = 6
 const BATTLE_SCORE = 6
 const WIN_SCORE = 12

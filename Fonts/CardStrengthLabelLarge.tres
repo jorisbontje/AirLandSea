@@ -5,6 +5,7 @@
 [resource]
 size = 72
 outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
 use_filter = true
 extra_spacing_top = -9
 font_data = ExtResource( 1 )
