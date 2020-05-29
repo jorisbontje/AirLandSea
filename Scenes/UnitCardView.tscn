@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Fonts/CardAbilityLabelLarge.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Fonts/CardBackLabelLarge.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Fonts/CardDescriptionLarge.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Fonts/CardStrengthLabelLarge.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Fonts/CardDurationLabelLarge.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Scenes/UnitCardView.gd" type="Script" id=6]
 
 [node name="UnitCardView" type="Control"]
@@ -54,11 +55,10 @@ __meta__ = {
 }
 
 [node name="AbilityLabel" type="Label" parent="."]
-visible = false
-margin_left = 31.0
+margin_left = 32.0
 margin_top = 3.0
-margin_right = 215.0
-margin_bottom = 81.0
+margin_right = 216.0
+margin_bottom = 84.0
 custom_fonts/font = ExtResource( 1 )
 text = "ABILITY"
 align = 2
@@ -69,7 +69,6 @@ __meta__ = {
 }
 
 [node name="DescriptionBox" type="ColorRect" parent="."]
-visible = false
 margin_left = 13.0
 margin_top = 88.0
 margin_right = 215.0
@@ -83,10 +82,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DurationLabel" type="Label" parent="DescriptionBox"]
+margin_left = 13.3305
+margin_top = 3.0
+margin_right = 197.331
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.423529, 0.423529, 0.423529, 1 )
+text = "instant"
+align = 2
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Description" type="Label" parent="DescriptionBox"]
-margin_left = 18.0
+margin_left = 19.0
 margin_top = 14.0
-margin_right = 183.0
+margin_right = 184.0
 margin_bottom = 199.0
 custom_fonts/font = ExtResource( 3 )
 text = "If a card is played in an adjacent theater with 3 or more cards already in it (counting both players' cards), DISCARD that card with no effect."
